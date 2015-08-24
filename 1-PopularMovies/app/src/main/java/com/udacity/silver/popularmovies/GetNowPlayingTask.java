@@ -3,14 +3,17 @@ package com.udacity.silver.popularmovies;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.List;
+
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 /**
  * Created by silver on 8/23/15.
  */
-public class GetNowPlayingTask extends AsyncTask<String, Void, MovieResultsPage> {
+public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
 
     public static final String LOG_TAG = GetNowPlayingTask.class.getName();
 
@@ -21,7 +24,7 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, MovieResultsPage>
     }
 
     @Override
-    protected MovieResultsPage doInBackground(String... strings) {
+    protected List<MovieDb> doInBackground(String... strings) {
 
         if (strings[0].isEmpty()){
             Log.e(LOG_TAG, "No API key");
@@ -30,15 +33,15 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, MovieResultsPage>
         Log.d(LOG_TAG,strings[0]);
         TmdbMovies movies = new TmdbApi(strings[0]).getMovies();
         MovieResultsPage nowPlaying = movies.getNowPlayingMovies("", 1);
-        return nowPlaying;
+        return nowPlaying.getResults();
     }
 
     @Override
-    protected void onPostExecute(MovieResultsPage resultsPage) {
-        receiver.receiveNowPlaying(resultsPage);
+    protected void onPostExecute(List<MovieDb> results) {
+        receiver.receiveNowPlaying(results);
     }
 
     interface NowPlayingReceiver {
-        void receiveNowPlaying(MovieResultsPage nowPlaying);
+        void receiveNowPlaying(List<MovieDb> nowPlaying);
     }
 }

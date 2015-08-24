@@ -2,4 +2,6 @@
     <string name="app_name">PopularMovies</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="base_URL"> http://image.tmdb.org/t/p/</string>
+    <string name="thumb_size">w780</string>
 </resources>
