@@ -22,8 +22,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
             MovieDb movie = (MovieDb) getIntent().getSerializableExtra(MOVIE_EXTRA);
 
-
-
             arguments.putSerializable(MOVIE_EXTRA, movie);
 
 
