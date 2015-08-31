@@ -1,24 +1,47 @@
 package com.udacity.silver.popularmovies;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MovieGridActivity extends AppCompatActivity {
+import info.movito.themoviedbapi.model.MovieDb;
+
+public class MovieDetailsActivity extends AppCompatActivity {
+
+    public static final String MOVIE_EXTRA = "Movie Extra";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_grid);
+        setContentView(R.layout.activity_movie_details);
+
+        if (savedInstanceState == null){
+            Bundle arguments = new Bundle();
+
+            MovieDb movie = (MovieDb) getIntent().getSerializableExtra(MOVIE_EXTRA);
+
+
+
+            arguments.putSerializable(MOVIE_EXTRA, movie);
+
+
+            MovieDetailsActivityFragment fragment = new MovieDetailsActivityFragment();
+            fragment.setArguments(arguments);
+
+
+            getSupportFragmentManager().beginTransaction().add(R.id.movie_details_container,fragment).commit();
+
+        }
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_movie_grid, menu);
+        getMenuInflater().inflate(R.menu.menu_movie_details, menu);
         return true;
     }
 
@@ -31,7 +54,6 @@ public class MovieGridActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this,MovieSettingsActivity.class));
             return true;
         }
 

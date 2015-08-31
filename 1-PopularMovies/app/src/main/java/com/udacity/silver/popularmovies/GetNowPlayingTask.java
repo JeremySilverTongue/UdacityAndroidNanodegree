@@ -10,9 +10,7 @@ import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
-/**
- * Created by silver on 8/23/15.
- */
+
 public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
 
     public static final String LOG_TAG = GetNowPlayingTask.class.getName();
