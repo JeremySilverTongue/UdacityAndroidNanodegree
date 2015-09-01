@@ -21,7 +21,6 @@ import info.movito.themoviedbapi.model.MovieDb;
 public class MovieGridActivityFragment extends Fragment implements NowPlayingReceiver {
 
     public static final String LOG_TAG = MovieGridActivityFragment.class.getName();
-
     private static final int MIN_COLUMN_WIDTH = 200;
 
     ArrayList<MovieDb> nowPlaying;
@@ -30,9 +29,6 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
     private static final String SCROLL_POSITION_KEY = "scroll";
     private int scrollPosition = 0;
     private RecyclerView mRecyclerView;
-
-    public MovieGridActivityFragment() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,27 +49,17 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
         int columns = (int)dpWidth/MIN_COLUMN_WIDTH;
         columns = Math.max(columns, 2);
 
-        int posterWidth =(int) dpWidth/columns;
-        int posterHeight =  5;
 
 
-        movieGridAdapter = new MovieGridAdapter(getContext(), posterWidth ,posterHeight);
+        movieGridAdapter = new MovieGridAdapter(getContext());
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv);
         mRecyclerView.setAdapter(movieGridAdapter);
-
-
-
-
 
         layoutManager = new GridLayoutManager(getContext(),columns);
         mRecyclerView.setLayoutManager(layoutManager);
 
         if (savedInstanceState != null){
-
             scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY, 0);
-            Log.d(LOG_TAG,"Scrolling to: " + scrollPosition );
-        } else {
-            Log.d(LOG_TAG, "Didn't find a scroll position to restore");
         }
         PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(movieGridAdapter);
         return root;
@@ -85,17 +71,11 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
         this.movieGridAdapter.movies = this.nowPlaying;
         this.movieGridAdapter.notifyDataSetChanged();
         mRecyclerView.scrollToPosition(scrollPosition);
-        for (MovieDb movie : nowPlaying){
-            Log.d(LOG_TAG, movie.getTitle());
-//            Log.d(LOG_TAG, movie.getPosterPath());
-            Log.d(LOG_TAG,movie.getReleaseDate());
-        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(SCROLL_POSITION_KEY, layoutManager.findFirstVisibleItemPosition());
-        Log.d(LOG_TAG, "Storing scroll position: " + layoutManager.findFirstVisibleItemPosition()  );
     }
 }

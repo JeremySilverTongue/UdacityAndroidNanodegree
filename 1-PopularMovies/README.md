@@ -2,11 +2,35 @@ Project is in the 1-PopularMovies Folder
 
 Note that to build the project you'll need to add your API key as a string resource called mdbAPIKey
 
+# Change Log
+
+My first submission set the number of grid columns to floor(screenWidth/200), which meant that on sufficiently small phones, it looked like it was just a list. I have fixed this by setting the minimum number of columns to 2. I also fixed a ton of scrolling issues, tightened up the grid, and added landscape support to both activities. I'll address the other issues raised in the first evaluations.
+
+## I think you have a great UI but currently it displays as 1 column and 1 row in the phone mode. A grid layout usually includes multi row and column layout and I encourage you to expand the number of rows and columns to make better use of space in your view.
+
+Fixed. Current scheme is columns = max(2, floor(screenWidth/200)), which mean 2 columns on my phone in portrait, 3 columns on my phone in landscape, 4 on my tablet in portrait mode, and 6 on my tablet in landscape.
+
+## Great job saving and restoring the scroll position.
+
+There was actually a bug here. I was using findFirstCompletelyVisibleItemPosition(), which yeilds -1 if no item is completely visible. Switching to findFirstVisibleItemPosition fixed that issue.
+
+## Consider raising your minSDK between 14-16. This way you use android's newer features as well as target 95% of the android user base.
+
+Keeping minSDK at 10. I am part of the 5% :P Ancient Droid X for the win.
+
+## Want to know a neat tip to improve your app's performance? Check whether your phone has network connectivity before creating an async task.
+
+Fair. Sounds like something that'll be addressed in Advanced Android Development, when we're doing all the productionizing stuff. There's very little error checking as it stands...
+
+## Instead of just having a portrait mode, consider allowing landscape orientation and the ability to use the additional device space to display more posters.
+
+Fixed
+
 # Rubric
 
 ## Movies are displayed in the main layout via a grid of their corresponding movie poster thumbnails:
 
-Yep. There's a little weirdness sometimes when you fling really fast, but I think that's more Glide's fault than mine. It just looks like it's not caching everything, or just not loading it fast enough. Not sure. It's working better than Picasso though.
+Yep.
 
 ## UI contains an element (i.e a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated
 
@@ -105,3 +129,5 @@ Ain't nobody got time to read all that. I think I'm good though.
 ## App’s code follows standard Java/Android Style Guidelines.
 
 Ugh. Kinda. There are plenty of places to ding me here.
+
+

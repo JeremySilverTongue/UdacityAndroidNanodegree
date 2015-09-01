@@ -14,7 +14,6 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
 public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
 
     public static final String LOG_TAG = GetNowPlayingTask.class.getName();
-
     private NowPlayingReceiver receiver;
 
     public GetNowPlayingTask(NowPlayingReceiver receiver) {
@@ -23,7 +22,6 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
 
     @Override
     protected List<MovieDb> doInBackground(String... strings) {
-
         if (strings[0].isEmpty()){
             Log.e(LOG_TAG, "No API key");
             return null;

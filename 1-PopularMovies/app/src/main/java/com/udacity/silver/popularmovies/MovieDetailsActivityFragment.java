@@ -21,7 +21,6 @@ public class MovieDetailsActivityFragment extends Fragment {
     public static final String LOG_TAG = MovieDetailsActivityFragment.class.getName();
 
     MovieDb movie;
-
     private TextView titleView;
     private TextView releaseDateView;
     private ImageView poster;
@@ -60,7 +59,6 @@ public class MovieDetailsActivityFragment extends Fragment {
         rating.setIsIndicator(true);
         rating.setRating(movie.getVoteAverage());
         plot.setText(movie.getOverview());
-
 
         return root;
     }

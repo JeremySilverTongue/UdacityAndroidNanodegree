@@ -27,8 +27,6 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
     public static final String LOG_TAG = MovieGridAdapter.class.getName();
     Context context;
     ArrayList<MovieDb> movies;
-    private int width;
-    private int height;
 
     public ArrayList<MovieDb> getMovies() {
         return movies;
@@ -55,11 +53,8 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         }
     }
 
-    public MovieGridAdapter(Context context, int width, int height){
-        Log.d(LOG_TAG, "Can you see my log messages?");
+    public MovieGridAdapter(Context context){
         this.context = context;
-        this.width = width;
-        this.height = height;
         movies = new ArrayList<>();
     }
 
@@ -82,18 +77,10 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 intent.putExtra(MovieDetailsActivity.MOVIE_EXTRA, movies.get(position));
                 context.startActivity(intent);
-
             }
         });
-//        final ImageView poster = holder.moviePoster;
-//        holder.moviePoster.setImageResource(R.drawable.marked_placeholder);
 
-
-//        holder.moviePoster.setVisibility(View.INVISIBLE);
-//        Glide.clear(holder.moviePoster);
         Picasso.with(holder.context).load(URL).placeholder(R.drawable.placeholder).into(holder.moviePoster);
-
-//        Glide.with(holder.context).load(URL).into(holder.moviePoster);
     }
 
     @Override

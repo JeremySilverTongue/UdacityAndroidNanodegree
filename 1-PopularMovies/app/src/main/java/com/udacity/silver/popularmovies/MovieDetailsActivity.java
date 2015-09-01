@@ -19,20 +19,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         if (savedInstanceState == null){
             Bundle arguments = new Bundle();
-
             MovieDb movie = (MovieDb) getIntent().getSerializableExtra(MOVIE_EXTRA);
-
             arguments.putSerializable(MOVIE_EXTRA, movie);
-
-
             MovieDetailsActivityFragment fragment = new MovieDetailsActivityFragment();
             fragment.setArguments(arguments);
-
-
             getSupportFragmentManager().beginTransaction().add(R.id.movie_details_container,fragment).commit();
-
         }
-
     }
 
 
