@@ -12,7 +12,7 @@ Fixed. Current scheme is columns = max(2, floor(screenWidth/200)), which mean 2 
 
 ## Great job saving and restoring the scroll position.
 
-There was actually a bug here. I was using findFirstCompletelyVisibleItemPosition(), which yeilds -1 if no item is completely visible. Switching to findFirstVisibleItemPosition fixed that issue.
+There was actually a bug here. I was using findFirstCompletelyVisibleItemPosition(), which yields -1 if no item is completely visible, which means scrolling back to the start of the list. Switching to findFirstVisibleItemPosition fixed that issue.
 
 ## Consider raising your minSDK between 14-16. This way you use android's newer features as well as target 95% of the android user base.
 
