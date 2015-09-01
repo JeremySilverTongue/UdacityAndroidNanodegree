@@ -3,7 +3,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="base_URL"> http://image.tmdb.org/t/p/</string>
-    <string name="thumb_size">w780</string>
+    <string name="thumb_size">w154</string>
+    <string name="thumb_size_large">w780</string>
     <string name="title_activity_movie_details">Movie Details</string>
 
 

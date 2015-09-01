@@ -23,6 +23,7 @@ public class MovieDetailsActivityFragment extends Fragment {
     MovieDb movie;
 
     private TextView titleView;
+    private TextView releaseDateView;
     private ImageView poster;
     private RatingBar rating;
     private TextView plot;
@@ -32,7 +33,7 @@ public class MovieDetailsActivityFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String baseUrl = getContext().getString(R.string.base_URL);
-        String size = getContext().getString(R.string.thumb_size);
+        String size = getContext().getString(R.string.thumb_size_large);
         String URL = baseUrl + size + movie.getPosterPath();
         Glide.with(getContext()).load(URL).into(poster);
     }
@@ -48,13 +49,14 @@ public class MovieDetailsActivityFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_movie_details, container, false);
 
         titleView = (TextView) root.findViewById(R.id.title_and_date);
+        releaseDateView = (TextView) root.findViewById(R.id.release_date);
         poster = (ImageView) root.findViewById(R.id.poster_view);
         rating = (RatingBar) root.findViewById(R.id.ratingBar);
         plot = (TextView) root.findViewById(R.id.textView2);
 
-        titleView.setText(movie.getTitle() + " - " + movie.getReleaseDate());
+        titleView.setText(movie.getTitle());
+        releaseDateView.setText(movie.getReleaseDate());
 
-        rating.setNumStars(10);
         rating.setIsIndicator(true);
         rating.setRating(movie.getVoteAverage());
         plot.setText(movie.getOverview());

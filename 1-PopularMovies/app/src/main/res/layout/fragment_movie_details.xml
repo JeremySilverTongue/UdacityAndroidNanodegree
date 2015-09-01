@@ -10,26 +10,34 @@
                 tools:context="com.udacity.silver.popularmovies.MovieDetailsActivityFragment">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/title_and_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-        android:gravity="center_horizontal"/>
+    <TextView
+        android:id="@+id/release_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        />
 
     <ImageView
         android:layout_width="match_parent"
         android:scaleType="centerInside"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:id="@+id/poster_view"
 
         />
 
     <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-
+        android:layout_gravity="center_horizontal"
+        android:numStars="10"
         />
 
     <ScrollView
