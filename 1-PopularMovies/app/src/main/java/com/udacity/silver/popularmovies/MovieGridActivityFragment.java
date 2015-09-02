@@ -35,6 +35,11 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_movie_grid, container, false);
 
+        if (savedInstanceState != null){
+            scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY, 0);
+        }
+
+
         String apiKey = getActivity().getString(R.string.mdbApiKey);
         GetNowPlayingTask moviesTask = new GetNowPlayingTask(this);
         moviesTask.execute(apiKey);
@@ -58,9 +63,7 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
         layoutManager = new GridLayoutManager(getContext(),columns);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        if (savedInstanceState != null){
-            scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY, 0);
-        }
+
         PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(movieGridAdapter);
         return root;
     }
