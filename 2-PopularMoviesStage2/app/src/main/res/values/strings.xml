@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="action_settings">Settings</string>
+    <string name="base_URL"> http://image.tmdb.org/t/p/</string>
+    <string name="thumb_size">w342</string>
+    <string name="thumb_size_large">w780</string>
+    <string name="title_activity_movie_details">Movie Details</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_sort_order_label">Sort Order</string>
+    <string name="pref_sort_order_key">sortOrder</string>
+    <string name="pref_most_popular">Most Popular</string>
+    <string name="pref_highest_rated">Highest Rated</string>
+</resources>
