@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/grid_fragment"
+              android:name="com.udacity.silver.popularmovies.MovieGridActivityFragment"
+              tools:layout="@layout/fragment_movie_grid"
+              android:layout_width="match_parent"
+              android:layout_weight="1"
+              android:layout_height="0dp"/>
+
+    <FrameLayout
+        android:id="@+id/movie_details_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

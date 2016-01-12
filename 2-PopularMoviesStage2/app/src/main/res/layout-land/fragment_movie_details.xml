@@ -7,13 +7,14 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context=".MovieDetailsFragment">
+              tools:context=".details.MovieDetailsFragment">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:id="@+id/poster_view"
@@ -33,10 +34,11 @@
             />
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -53,19 +55,18 @@
             android:gravity="center_horizontal"
             />
 
-        <ScrollView
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviews_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            >
+            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-        </ScrollView>
 
     </LinearLayout>
 

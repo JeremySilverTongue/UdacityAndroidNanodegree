@@ -36,5 +36,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'org.slf4j:slf4j-android:1.7.7'
     compile group: 'info.movito', name: 'themoviedbapi', version:'1.1'
 }

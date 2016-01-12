@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.udacity.silver.popularmovies.MovieGridActivityFragment.MovieSelectedListener;
+import com.udacity.silver.popularmovies.details.MovieDetailsActivity;
+import com.udacity.silver.popularmovies.details.MovieDetailsFragment;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -15,7 +17,20 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
 
     public static final String TAG = MovieGridActivity.class.getName();
 
+    public static final String SELECTED_MOVIE_KEY = "FART FART FART FART";
+
     boolean twoPane;
+
+    private MovieDb selectedMovie;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+
+        outState.putSerializable(SELECTED_MOVIE_KEY, selectedMovie);
+
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,31 +39,28 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
 
         if (findViewById(R.id.movie_details_container) != null) {
             twoPane = true;
-            if (savedInstanceState == null) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.movie_details_container, new MovieDetailsFragment())
-                        .commit();
+            Log.d(TAG, "Looks like we're two pane");
+            if (savedInstanceState != null){
+                MovieDb movie = (MovieDb) savedInstanceState.getSerializable(SELECTED_MOVIE_KEY);
+                movieSelected(movie);
             }
+
         } else {
+            Log.d(TAG, "Looks like we're one pane");
             twoPane = false;
         }
-
 
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_movie_grid, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -63,9 +75,9 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
 
     @Override
     public void movieSelected(MovieDb movie) {
-        Log.d(TAG, "I sure would like to help you learn more about that movie");
         if (movie != null) {
             if (twoPane) {
+                selectedMovie = movie;
                 Bundle arguments = new Bundle();
                 arguments.putSerializable(MovieDetailsFragment.MOVIE_EXTRA, movie);
                 MovieDetailsFragment fragment = new MovieDetailsFragment();

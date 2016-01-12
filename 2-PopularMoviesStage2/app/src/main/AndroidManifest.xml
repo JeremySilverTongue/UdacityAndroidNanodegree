@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MovieDetailsActivity"
+            android:name=".details.MovieDetailsActivity"
             android:label="@string/title_activity_movie_details"
 
             android:parentActivityName=".MovieGridActivity" >

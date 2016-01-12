@@ -11,7 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.udacity.silver.popularmovies.GetNowPlayingTask.NowPlayingReceiver;
+import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask;
+import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask.NowPlayingReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
         columns = Math.max(columns, 2);
 
 
-        movieGridAdapter = new MovieGridAdapter(getContext(), (MovieSelectedListener) getActivity());
+        movieGridAdapter = new MovieGridAdapter(getContext(), (MovieSelectedListener) getContext());
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv);
         mRecyclerView.setAdapter(movieGridAdapter);
 
@@ -68,7 +69,7 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
     @Override
     public void receiveNowPlaying(List<MovieDb> nowPlaying) {
         this.nowPlaying = new ArrayList<MovieDb>(nowPlaying);
-        this.movieGridAdapter.movies = this.nowPlaying;
+        this.movieGridAdapter.setMovies(this.nowPlaying);
         this.movieGridAdapter.notifyDataSetChanged();
         mRecyclerView.scrollToPosition(scrollPosition);
     }

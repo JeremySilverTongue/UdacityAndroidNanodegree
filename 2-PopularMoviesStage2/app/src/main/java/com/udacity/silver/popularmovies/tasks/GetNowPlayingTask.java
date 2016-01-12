@@ -1,4 +1,4 @@
-package com.udacity.silver.popularmovies;
+package com.udacity.silver.popularmovies.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -27,8 +27,11 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
             return null;
         }
         Log.d(LOG_TAG,strings[0]);
-        TmdbMovies movies = new TmdbApi(strings[0]).getMovies();
-        MovieResultsPage nowPlaying = movies.getNowPlayingMovies("", 1);
+
+        TmdbApi api = new TmdbApi(strings[0]);
+
+        TmdbMovies movies = api.getMovies();
+        MovieResultsPage nowPlaying = movies.getPopularMovieList("", 1);
         return nowPlaying.getResults();
     }
 
@@ -37,7 +40,7 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
         receiver.receiveNowPlaying(results);
     }
 
-    interface NowPlayingReceiver {
+    public interface NowPlayingReceiver {
         void receiveNowPlaying(List<MovieDb> nowPlaying);
     }
 }

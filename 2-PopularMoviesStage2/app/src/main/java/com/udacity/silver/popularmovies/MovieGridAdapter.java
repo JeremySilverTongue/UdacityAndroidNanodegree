@@ -25,11 +25,16 @@ import info.movito.themoviedbapi.model.MovieDb;
 public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> implements OnSharedPreferenceChangeListener {
 
     public static final String LOG_TAG = MovieGridAdapter.class.getName();
-    Context context;
-    ArrayList<MovieDb> movies;
-
     final MovieSelectedListener movieSelectedListener;
+    Context context;
+    private ArrayList<MovieDb> movies;
 
+
+    public MovieGridAdapter(Context context, MovieSelectedListener movieSelectedListener) {
+        this.context = context;
+        this.movieSelectedListener = movieSelectedListener;
+        movies = new ArrayList<>();
+    }
 
     public ArrayList<MovieDb> getMovies() {
         return movies;
@@ -46,27 +51,11 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         checkSortOrder();
     }
 
-    public static final class MovieViewHolder extends RecyclerView.ViewHolder {
-        public ImageView moviePoster;
-        public Context context;
-        public MovieViewHolder(View view, Context context){
-            super(view);
-            moviePoster = (ImageView) view.findViewById(R.id.poster);
-            this.context = context;
-        }
-    }
-
-    public MovieGridAdapter(Context context, MovieSelectedListener movieSelectedListener){
-        this.context = context;
-        this.movieSelectedListener = movieSelectedListener;
-        movies = new ArrayList<>();
-    }
-
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.movie, parent, false);
-        return new MovieViewHolder(v,parent.getContext());
+        return new MovieViewHolder(v, parent.getContext());
     }
 
     @Override
@@ -91,7 +80,7 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         return movies.size();
     }
 
-    private void checkSortOrder(){
+    private void checkSortOrder() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String sortOrder = preferences.getString(
                 context.getString(R.string.pref_sort_order_key),
@@ -116,5 +105,16 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         }
         notifyDataSetChanged();
 
+    }
+
+    public static final class MovieViewHolder extends RecyclerView.ViewHolder {
+        public ImageView moviePoster;
+        public Context context;
+
+        public MovieViewHolder(View view, Context context) {
+            super(view);
+            moviePoster = (ImageView) view.findViewById(R.id.poster);
+            this.context = context;
+        }
     }
 }

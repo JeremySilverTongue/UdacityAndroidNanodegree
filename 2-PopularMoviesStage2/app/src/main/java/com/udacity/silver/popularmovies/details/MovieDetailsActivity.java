@@ -1,9 +1,11 @@
-package com.udacity.silver.popularmovies;
+package com.udacity.silver.popularmovies.details;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.udacity.silver.popularmovies.R;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -15,7 +17,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        setContentView(R.layout.activity_movie_grid);
 
         if (savedInstanceState == null){
             Bundle arguments = new Bundle();
