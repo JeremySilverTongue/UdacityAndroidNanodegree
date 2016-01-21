@@ -2,6 +2,10 @@ Project is in the 1-PopularMovies Folder
 
 Note that to build the project you'll need to add your API key as a string resource called mdbAPIKey
 
+# Attributions
+
+some assets were created using the Android Asset Studio: 
+
 # Change Log
 
 My first submission set the number of grid columns to floor(screenWidth/200), which meant that on sufficiently small phones, it looked like it was just a list. I have fixed this by setting the minimum number of columns to 2. I also fixed a ton of scrolling issues, tightened up the grid, and added landscape support to both activities. I'll address the other issues raised in the first evaluations.

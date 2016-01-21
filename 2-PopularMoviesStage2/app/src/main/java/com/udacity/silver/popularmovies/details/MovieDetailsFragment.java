@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -38,6 +40,12 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
     private RecyclerView reviews;
     private ReviewsAdapter reviewsAdapter;
     private LayoutManager reviewsLayoutManager;
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @Override
     public void receiveMovie(MovieDb movie) {
@@ -90,7 +98,7 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
         poster = (ImageView) root.findViewById(R.id.poster_view);
         rating = (RatingBar) root.findViewById(R.id.ratingBar);
         rating.setIsIndicator(true);
-        plot = (TextView) root.findViewById(R.id.textView2);
+        plot = (TextView) root.findViewById(R.id.plot);
         reviews = (RecyclerView) root.findViewById(R.id.reviews_recycler_view);
         reviewsAdapter = new ReviewsAdapter();
         reviewsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

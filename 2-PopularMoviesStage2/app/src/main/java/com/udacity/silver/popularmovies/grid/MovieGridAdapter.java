@@ -1,4 +1,4 @@
-package com.udacity.silver.popularmovies;
+package com.udacity.silver.popularmovies.grid;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.silver.popularmovies.MovieGridActivityFragment.MovieSelectedListener;
-import com.udacity.silver.popularmovies.MovieGridAdapter.MovieViewHolder;
+import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
+import com.udacity.silver.popularmovies.grid.MovieGridAdapter.MovieViewHolder;
+import com.udacity.silver.popularmovies.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

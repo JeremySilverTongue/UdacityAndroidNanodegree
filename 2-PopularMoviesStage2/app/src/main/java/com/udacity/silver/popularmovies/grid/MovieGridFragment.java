@@ -1,4 +1,4 @@
-package com.udacity.silver.popularmovies;
+package com.udacity.silver.popularmovies.grid;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask;
 import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask.NowPlayingReceiver;
 
@@ -19,9 +20,9 @@ import java.util.List;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
-public class MovieGridActivityFragment extends Fragment implements NowPlayingReceiver {
+public class MovieGridFragment extends Fragment implements NowPlayingReceiver {
 
-    public static final String LOG_TAG = MovieGridActivityFragment.class.getName();
+    public static final String LOG_TAG = MovieGridFragment.class.getName();
     private static final int MIN_COLUMN_WIDTH = 200;
     private static final String SCROLL_POSITION_KEY = "scroll";
     ArrayList<MovieDb> nowPlaying;
@@ -54,7 +55,10 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
         columns = Math.max(columns, 2);
 
 
+        Log.d(LOG_TAG, "We're making a movie grid adapter for some damn reason");
         movieGridAdapter = new MovieGridAdapter(getContext(), (MovieSelectedListener) getContext());
+
+
         mRecyclerView = (RecyclerView) root.findViewById(R.id.rv);
         mRecyclerView.setAdapter(movieGridAdapter);
 
@@ -80,7 +84,7 @@ public class MovieGridActivityFragment extends Fragment implements NowPlayingRec
         outState.putInt(SCROLL_POSITION_KEY, layoutManager.findFirstVisibleItemPosition());
     }
 
-    interface MovieSelectedListener {
+    public interface MovieSelectedListener {
         void movieSelected(MovieDb movie);
     }
 }

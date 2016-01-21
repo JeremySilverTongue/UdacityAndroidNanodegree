@@ -1,4 +1,4 @@
-package com.udacity.silver.popularmovies;
+package com.udacity.silver.popularmovies.grid;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.udacity.silver.popularmovies.MovieGridActivityFragment.MovieSelectedListener;
+import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
+import com.udacity.silver.popularmovies.MovieSettingsActivity;
+import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.details.MovieDetailsActivity;
 import com.udacity.silver.popularmovies.details.MovieDetailsFragment;
 

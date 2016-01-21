@@ -11,24 +11,22 @@ import info.movito.themoviedbapi.model.MovieDb;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
-
-
+    public final static String TAG = MovieDetailsActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_grid);
+        setContentView(R.layout.activity_movie_details);
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             MovieDb movie = (MovieDb) getIntent().getSerializableExtra(MovieDetailsFragment.MOVIE_EXTRA);
             arguments.putSerializable(MovieDetailsFragment.MOVIE_EXTRA, movie);
             MovieDetailsFragment fragment = new MovieDetailsFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction().add(R.id.movie_details_container,fragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.movie_details_container, fragment).commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.udacity.silver.popularmovies" >
+<manifest package="com.udacity.silver.popularmovies"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".MovieGridActivity"
+            android:name=".grid.MovieGridActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
 
             >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".details.MovieDetailsActivity"
             android:label="@string/title_activity_movie_details"
 
-            android:parentActivityName=".MovieGridActivity" >
+            android:parentActivityName=".grid.MovieGridActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="MovieGridActivity" />
+                android:value=".grid.MovieGridActivity"/>
         </activity>
 
-        <activity android:name=".MovieSettingsActivity"
-                  android:label="@string/title_activity_settings"
-                  android:parentActivityName=".MovieGridActivity"
-                  >
-                  <meta-data android:name="android.support.PARENT_ACTIVITY"
-                             android:value=".MovieGridActivity"/>
+        <activity
+            android:name=".MovieSettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".grid.MovieGridActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".grid.MovieGridActivity"/>
 
         </activity>
 
