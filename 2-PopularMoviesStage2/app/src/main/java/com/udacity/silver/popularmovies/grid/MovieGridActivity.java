@@ -7,11 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
 import com.udacity.silver.popularmovies.MovieSettingsActivity;
 import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.details.MovieDetailsActivity;
 import com.udacity.silver.popularmovies.details.MovieDetailsFragment;
+import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -42,7 +42,7 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
         if (findViewById(R.id.movie_details_container) != null) {
             twoPane = true;
             Log.d(TAG, "Looks like we're two pane");
-            if (savedInstanceState != null){
+            if (savedInstanceState != null) {
                 MovieDb movie = (MovieDb) savedInstanceState.getSerializable(SELECTED_MOVIE_KEY);
                 movieSelected(movie);
             }

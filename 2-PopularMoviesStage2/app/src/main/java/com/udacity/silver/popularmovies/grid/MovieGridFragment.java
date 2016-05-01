@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.udacity.silver.popularmovies.BuildConfig;
 import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask;
 import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask.NowPlayingReceiver;
@@ -40,7 +41,7 @@ public class MovieGridFragment extends Fragment implements NowPlayingReceiver {
             scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY, 0);
         }
 
-        String apiKey = getActivity().getString(R.string.mdbApiKey);
+        String apiKey = BuildConfig.MOVIE_DB_API_KEY;
         GetNowPlayingTask moviesTask = new GetNowPlayingTask(this);
         moviesTask.execute(apiKey);
         try {

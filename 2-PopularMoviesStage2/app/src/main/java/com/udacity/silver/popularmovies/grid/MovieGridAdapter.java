@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
-import com.udacity.silver.popularmovies.grid.MovieGridAdapter.MovieViewHolder;
 import com.udacity.silver.popularmovies.R;
+import com.udacity.silver.popularmovies.grid.MovieGridAdapter.MovieViewHolder;
+import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -85,9 +85,9 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String sortOrder = preferences.getString(
                 context.getString(R.string.pref_sort_order_key),
-                context.getString(R.string.pref_most_popular)
+                context.getString(R.string.pref_sort_oder_default)
         );
-        if (sortOrder.equals(context.getString(R.string.pref_most_popular))) {
+        if (sortOrder.equals(context.getString(R.string.pref_sort_order_popular_key))) {
             Log.d(LOG_TAG, "Sorting by most popular");
             Collections.sort(movies, new Comparator<MovieDb>() {
                 @Override

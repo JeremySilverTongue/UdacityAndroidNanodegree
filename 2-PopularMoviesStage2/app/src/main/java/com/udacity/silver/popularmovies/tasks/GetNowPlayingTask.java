@@ -22,11 +22,11 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
 
     @Override
     protected List<MovieDb> doInBackground(String... strings) {
-        if (strings[0].isEmpty()){
+        if (strings[0].isEmpty()) {
             Log.e(LOG_TAG, "No API key");
             return null;
         }
-        Log.d(LOG_TAG,strings[0]);
+        Log.d(LOG_TAG, strings[0]);
 
         TmdbApi api = new TmdbApi(strings[0]);
 

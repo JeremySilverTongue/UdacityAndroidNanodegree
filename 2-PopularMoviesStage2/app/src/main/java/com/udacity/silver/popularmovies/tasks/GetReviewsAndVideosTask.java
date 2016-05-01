@@ -24,7 +24,6 @@ public class GetReviewsAndVideosTask extends AsyncTask<Integer, Void, MovieDb> {
         TmdbMovies moviesApi = new TmdbApi(apiKey).getMovies();
 
 
-
         return moviesApi.getMovie(ids[0], "en", MovieMethod.reviews, MovieMethod.videos);
     }
 

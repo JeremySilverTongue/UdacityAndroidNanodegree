@@ -6,8 +6,15 @@
     <string name="thumb_size_large">w780</string>
     <string name="title_activity_movie_details">Movie Details</string>
     <string name="title_activity_settings">Settings</string>
+
     <string name="pref_sort_order_label">Sort Order</string>
-    <string name="pref_sort_order_key">sortOrder</string>
-    <string name="pref_most_popular">Most Popular</string>
-    <string name="pref_highest_rated">Highest Rated</string>
+    <string name="pref_sort_order_key" translatable="false">sortOrder</string>
+    <string name="pref_sort_oder_default" translatable="false">popular</string>
+
+    <string name="pref_sort_order_popular_label">Most Popular</string>
+    <string name="pref_sort_order_popular_key" translatable="false">popular</string>
+
+    <string name="pref_sort_order_rating_label">Highest Rated</string>
+    <string name="pref_sort_order_rating_key" translatable="false">rating</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.udacity.silver.popularmovies.details;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.udacity.silver.popularmovies.BuildConfig;
 import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.tasks.GetReviewsAndVideosTask;
 import com.udacity.silver.popularmovies.tasks.GetReviewsAndVideosTask.ReviewsAndVideosReceiver;
@@ -47,6 +49,13 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     public void receiveMovie(MovieDb movie) {
         titleView.setText(movie.getTitle());
@@ -65,6 +74,9 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
 
         String baseUrl = getContext().getString(R.string.base_URL);
         String size = getContext().getString(R.string.thumb_size_large);
@@ -88,7 +100,7 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
             Log.d(LOG_TAG, "How the hell did you get created with no arguments?");
         }
 
-        GetReviewsAndVideosTask reviewsAndVideosTask = new GetReviewsAndVideosTask(this, getContext().getString(R.string.mdbApiKey));
+        GetReviewsAndVideosTask reviewsAndVideosTask = new GetReviewsAndVideosTask(this, BuildConfig.MOVIE_DB_API_KEY);
 
         reviewsAndVideosTask.execute(movie.getId());
 
