@@ -32,7 +32,7 @@
         </activity>
 
         <activity
-            android:name=".MovieSettingsActivity"
+            android:name=".prefs.MovieSettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".grid.MovieGridActivity">
             <meta-data

@@ -10,13 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.grid.MovieGridAdapter.MovieViewHolder;
 import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
+import com.udacity.silver.popularmovies.prefs.MoviePrefs;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,7 +31,7 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
     public static final String LOG_TAG = MovieGridAdapter.class.getName();
     final MovieSelectedListener movieSelectedListener;
     Context context;
-    private ArrayList<MovieDb> movies;
+    private List<MovieDb> movies;
 
 
     public MovieGridAdapter(Context context, MovieSelectedListener movieSelectedListener) {
@@ -37,11 +40,11 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         movies = new ArrayList<>();
     }
 
-    public ArrayList<MovieDb> getMovies() {
+    public List<MovieDb> getMovies() {
         return movies;
     }
 
-    public void setMovies(ArrayList<MovieDb> movies) {
+    public void setMovies(List<MovieDb> movies) {
         checkSortOrder();
         this.movies = movies;
     }
@@ -60,18 +63,32 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, final int position) {
+    public void onBindViewHolder(final MovieViewHolder holder, final int position) {
         String baseUrl = holder.context.getString(R.string.base_URL);
         String size = holder.context.getString(R.string.thumb_size);
         String URL = baseUrl + size + movies.get(position).getPosterPath();
+        final int id = getMovies().get(holder.getAdapterPosition()).getId();
 
         holder.itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                movieSelectedListener.movieSelected(movies.get(position));
+                movieSelectedListener.movieSelected(movies.get(holder.getAdapterPosition()));
 
             }
         });
+
+
+        holder.favoriteButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MoviePrefs.toggleFavorite(context, id);
+                holder.favoriteButton.setChecked(MoviePrefs.isFavorite(context, id));
+            }
+        });
+
+
+        holder.favoriteButton.setChecked(MoviePrefs.isFavorite(context, id));
+
 
         Picasso.with(holder.context).load(URL).placeholder(R.drawable.placeholder).into(holder.moviePoster);
     }
@@ -109,12 +126,15 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
     }
 
     public static final class MovieViewHolder extends RecyclerView.ViewHolder {
+
         public ImageView moviePoster;
+        public CheckBox favoriteButton;
         public Context context;
 
         public MovieViewHolder(View view, Context context) {
             super(view);
             moviePoster = (ImageView) view.findViewById(R.id.poster);
+            favoriteButton = (CheckBox) view.findViewById(R.id.favorite_button);
             this.context = context;
         }
     }

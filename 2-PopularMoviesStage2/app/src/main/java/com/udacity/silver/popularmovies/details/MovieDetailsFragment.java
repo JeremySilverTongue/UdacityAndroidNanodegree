@@ -1,24 +1,23 @@
 package com.udacity.silver.popularmovies.details;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.udacity.silver.popularmovies.BuildConfig;
 import com.udacity.silver.popularmovies.R;
+import com.udacity.silver.popularmovies.prefs.MoviePrefs;
 import com.udacity.silver.popularmovies.tasks.GetReviewsAndVideosTask;
 import com.udacity.silver.popularmovies.tasks.GetReviewsAndVideosTask.ReviewsAndVideosReceiver;
 
@@ -34,21 +33,21 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
     public static final String MOVIE_EXTRA = "Movie Extra";
 
     MovieDb movie;
+
+    private LinearLayout mainLayout;
+    private CheckBox favoriteButton;
     private TextView titleView;
     private TextView releaseDateView;
     private ImageView poster;
     private RatingBar rating;
     private TextView plot;
-    private RecyclerView reviews;
-    private ReviewsAdapter reviewsAdapter;
-    private LayoutManager reviewsLayoutManager;
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
 
     @Override
@@ -65,17 +64,11 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
         rating.setRating(movie.getVoteAverage());
         plot.setText(movie.getOverview());
 
-        reviewsAdapter.setReviews(movie.getReviews());
-        reviewsAdapter.notifyDataSetChanged();
-
-
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
 
 
         String baseUrl = getContext().getString(R.string.base_URL);
@@ -105,18 +98,25 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
         reviewsAndVideosTask.execute(movie.getId());
 
 
+        mainLayout = (LinearLayout) root.findViewById(R.id.main_linear_layout);
+        favoriteButton = (CheckBox) root.findViewById(R.id.favorite_button);
         titleView = (TextView) root.findViewById(R.id.title_and_date);
         releaseDateView = (TextView) root.findViewById(R.id.release_date);
         poster = (ImageView) root.findViewById(R.id.poster_view);
         rating = (RatingBar) root.findViewById(R.id.ratingBar);
         rating.setIsIndicator(true);
         plot = (TextView) root.findViewById(R.id.plot);
-        reviews = (RecyclerView) root.findViewById(R.id.reviews_recycler_view);
-        reviewsAdapter = new ReviewsAdapter();
-        reviewsLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
-        reviews.setLayoutManager(reviewsLayoutManager);
-        reviews.setAdapter(reviewsAdapter);
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MoviePrefs.toggleFavorite(getContext(), movie.getId());
+                favoriteButton.setChecked(MoviePrefs.isFavorite(getContext(), movie.getId()));
+            }
+        });
+
+
+        favoriteButton.setChecked(MoviePrefs.isFavorite(getContext(), movie.getId()));
 
 
         return root;

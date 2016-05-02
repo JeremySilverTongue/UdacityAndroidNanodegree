@@ -7,11 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.udacity.silver.popularmovies.MovieSettingsActivity;
 import com.udacity.silver.popularmovies.R;
 import com.udacity.silver.popularmovies.details.MovieDetailsActivity;
 import com.udacity.silver.popularmovies.details.MovieDetailsFragment;
 import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
+import com.udacity.silver.popularmovies.prefs.MovieSettingsActivity;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -94,4 +94,5 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
             Log.d(TAG, "How the crap did this get called with a null movie?");
         }
     }
+
 }

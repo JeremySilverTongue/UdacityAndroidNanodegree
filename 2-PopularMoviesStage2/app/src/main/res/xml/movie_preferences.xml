@@ -6,6 +6,11 @@
         android:entryValues="@array/pref_sort_order_keys"
         android:key="@string/pref_sort_order_key"
         android:title="@string/pref_sort_order_label" />
+    <CheckBoxPreference
+        android:key="@string/pref_show_favorites_key"
+        android:title="@string/pref_show_favorites_label"
+
+        />
 
 
 </PreferenceScreen>

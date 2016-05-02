@@ -6,77 +6,96 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.udacity.silver.popularmovies.BuildConfig;
 import com.udacity.silver.popularmovies.R;
+import com.udacity.silver.popularmovies.prefs.MoviePrefs;
+import com.udacity.silver.popularmovies.tasks.GetFavoritesTask;
 import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask;
-import com.udacity.silver.popularmovies.tasks.GetNowPlayingTask.NowPlayingReceiver;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
-public class MovieGridFragment extends Fragment implements NowPlayingReceiver {
+public class MovieGridFragment extends Fragment implements MovieListReceiver {
 
     public static final String LOG_TAG = MovieGridFragment.class.getName();
     private static final int MIN_COLUMN_WIDTH = 200;
     private static final String SCROLL_POSITION_KEY = "scroll";
-    ArrayList<MovieDb> nowPlaying;
+
+    private TextView errorTextView;
+    private RecyclerView recyclerView;
+
     private MovieGridAdapter movieGridAdapter;
     private GridLayoutManager layoutManager;
     private int scrollPosition = 0;
-    private RecyclerView mRecyclerView;
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        errorTextView.setText("");
+
+        String apiKey = BuildConfig.MOVIE_DB_API_KEY;
+        if (MoviePrefs.showFavorites(getContext())) {
+            new GetFavoritesTask(getContext(), this).execute(apiKey);
+        } else {
+            new GetNowPlayingTask(this).execute(apiKey);
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_movie_grid, container, false);
 
+        recyclerView = (RecyclerView) root.findViewById(R.id.rv);
+        errorTextView = (TextView) root.findViewById(R.id.error);
+
         if (savedInstanceState != null) {
             scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY, 0);
         }
 
-        String apiKey = BuildConfig.MOVIE_DB_API_KEY;
-        GetNowPlayingTask moviesTask = new GetNowPlayingTask(this);
-        moviesTask.execute(apiKey);
-        try {
-            moviesTask.wait();
-        } catch (Exception e) {
-            Log.e(LOG_TAG, e.toString());
-        }
 
-        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int columns = (int) dpWidth / MIN_COLUMN_WIDTH;
+        
+        int columns =  root.getWidth() / MIN_COLUMN_WIDTH;
         columns = Math.max(columns, 2);
 
 
-        Log.d(LOG_TAG, "We're making a movie grid adapter for some damn reason");
+
+
         movieGridAdapter = new MovieGridAdapter(getContext(), (MovieSelectedListener) getContext());
 
 
-        mRecyclerView = (RecyclerView) root.findViewById(R.id.rv);
-        mRecyclerView.setAdapter(movieGridAdapter);
+        recyclerView.setAdapter(movieGridAdapter);
 
         layoutManager = new GridLayoutManager(getContext(), columns);
-        mRecyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
+
 
 
         PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(movieGridAdapter);
         return root;
     }
 
-    @Override
-    public void receiveNowPlaying(List<MovieDb> nowPlaying) {
-        this.nowPlaying = new ArrayList<MovieDb>(nowPlaying);
-        this.movieGridAdapter.setMovies(this.nowPlaying);
-        this.movieGridAdapter.notifyDataSetChanged();
-        mRecyclerView.scrollToPosition(scrollPosition);
+
+    public void receiveMovies(List<MovieDb> nowPlaying) {
+
+
+
+            movieGridAdapter.setMovies(nowPlaying);
+            movieGridAdapter.notifyDataSetChanged();
+            recyclerView.scrollToPosition(scrollPosition);
+
+        if (nowPlaying.size() == 0 && MoviePrefs.showFavorites(getContext())) {
+            errorTextView.setText(getString(R.string.error_no_favorites));
+        }
     }
 
     @Override
@@ -88,4 +107,6 @@ public class MovieGridFragment extends Fragment implements NowPlayingReceiver {
     public interface MovieSelectedListener {
         void movieSelected(MovieDb movie);
     }
+
 }
+

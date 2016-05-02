@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/poster"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:adjustViewBounds="true">
+    android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"></ImageView>
 
-</ImageView>
+    <CheckBox
+
+        android:id="@+id/favorite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:button="@android:drawable/btn_star" />
+</RelativeLayout>

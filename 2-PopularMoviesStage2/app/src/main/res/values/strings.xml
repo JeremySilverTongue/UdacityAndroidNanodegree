@@ -17,4 +17,16 @@
     <string name="pref_sort_order_rating_label">Highest Rated</string>
     <string name="pref_sort_order_rating_key" translatable="false">rating</string>
 
+
+    <string name="pref_show_favorites_label">Show Favorites</string>
+    <string name="pref_show_favorites_key" translatable="false">show_favs</string>
+
+    <string name="pref_favorite_key" translatable="false">favorite</string>
+
+
+    <string name="content_desc_movie_poster">Movie Poster</string>
+
+    <string name="error_no_favorites">Looks like you haven\'t added any favorites!</string>
+
+
 </resources>

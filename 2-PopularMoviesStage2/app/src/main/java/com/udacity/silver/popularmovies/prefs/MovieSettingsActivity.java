@@ -1,4 +1,4 @@
-package com.udacity.silver.popularmovies;
+package com.udacity.silver.popularmovies.prefs;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+
+import com.udacity.silver.popularmovies.R;
 
 
 public class MovieSettingsActivity extends AppCompatActivity {

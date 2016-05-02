@@ -9,8 +9,8 @@
         android:id="@+id/review_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Test Author"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Test Author" />
 
     <TextView
         android:id="@+id/review_content"

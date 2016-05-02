@@ -1,26 +1,33 @@
 package com.udacity.silver.popularmovies.tasks;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.udacity.silver.popularmovies.grid.MovieListReceiver;
+import com.udacity.silver.popularmovies.prefs.MoviePrefs;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 
-public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
+public class GetFavoritesTask extends AsyncTask<String, Void, List<MovieDb>> {
 
-    public static final String LOG_TAG = GetNowPlayingTask.class.getName();
+
+    public static final String LOG_TAG = GetFavoritesTask.class.getName();
+    private Context context;
     private MovieListReceiver receiver;
 
-    public GetNowPlayingTask(MovieListReceiver receiver) {
+    public GetFavoritesTask(Context context, MovieListReceiver receiver) {
+        this.context = context;
         this.receiver = receiver;
     }
+
 
     @Override
     protected List<MovieDb> doInBackground(String... strings) {
@@ -30,11 +37,18 @@ public class GetNowPlayingTask extends AsyncTask<String, Void, List<MovieDb>> {
         }
         Log.d(LOG_TAG, strings[0]);
 
-        TmdbApi api = new TmdbApi(strings[0]);
+        TmdbMovies moviesApi = new TmdbApi(strings[0]).getMovies();
 
-        TmdbMovies movies = api.getMovies();
-        MovieResultsPage nowPlaying = movies.getPopularMovieList("", 1);
-        return nowPlaying.getResults();
+        ArrayList<MovieDb> movies = new ArrayList<>();
+
+        Set<Integer> favs = MoviePrefs.getFavorites(context);
+
+        for (Integer fav : favs) {
+            movies.add(moviesApi.getMovie(fav, ""));
+        }
+
+
+        return movies;
     }
 
     @Override
