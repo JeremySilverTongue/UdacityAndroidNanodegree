@@ -1,8 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +30,6 @@ public class MainActivityFragment extends Fragment implements JokeReceiver {
 
     public MainActivityFragment() {
     }
-
 
 
     @Override
@@ -68,13 +67,13 @@ public class MainActivityFragment extends Fragment implements JokeReceiver {
         return root;
     }
 
-    public void tellJoke(){
+    public void tellJoke() {
         mLoadingIndicator.setVisibility(View.VISIBLE);
         GetJokeTask task = new GetJokeTask();
         task.execute(this);
     }
 
-    public void receiveJoke(String joke){
+    public void receiveJoke(String joke) {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
         this.joke = joke;
         if (mInterstitialAd.isLoaded()) {
@@ -85,9 +84,9 @@ public class MainActivityFragment extends Fragment implements JokeReceiver {
     }
 
     public void launchJokeActivity() {
-            Intent intent = new Intent(getActivity(), JokeActivity.class);
-            intent.putExtra(JokeActivity.JOKE_KEY, joke);
-            startActivity(intent);
+        Intent intent = new Intent(getActivity(), JokeActivity.class);
+        intent.putExtra(JokeActivity.JOKE_KEY, joke);
+        startActivity(intent);
     }
 
     private void requestNewInterstitial() {
