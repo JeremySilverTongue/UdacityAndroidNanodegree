@@ -113,8 +113,6 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
                         startActivity(shareIntent);
                     }
                 });
-                
-
 
 
                 name.setText(video.getName());

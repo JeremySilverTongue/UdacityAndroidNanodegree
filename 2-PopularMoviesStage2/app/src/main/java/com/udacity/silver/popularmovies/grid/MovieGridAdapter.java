@@ -3,7 +3,6 @@ package com.udacity.silver.popularmovies.grid;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,10 +18,10 @@ import com.udacity.silver.popularmovies.grid.MovieGridAdapter.MovieViewHolder;
 import com.udacity.silver.popularmovies.grid.MovieGridFragment.MovieSelectedListener;
 import com.udacity.silver.popularmovies.prefs.MoviePrefs;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -86,8 +85,6 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
                 holder.favoriteButton.setChecked(MoviePrefs.isFavorite(context, id));
             }
         });
-
-
 
 
         holder.favoriteButton.setChecked(MoviePrefs.isFavorite(context, id));

@@ -44,9 +44,8 @@
             android:id="@+id/poster_view"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerInside"
             android:contentDescription="@string/content_desc_movie_poster"
-            />
+            android:scaleType="centerInside" />
 
         <RatingBar
             android:id="@+id/ratingBar"

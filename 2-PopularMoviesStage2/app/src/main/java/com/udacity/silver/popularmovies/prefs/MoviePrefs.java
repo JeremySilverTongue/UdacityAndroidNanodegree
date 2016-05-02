@@ -61,7 +61,6 @@ public final class MoviePrefs {
         editor.apply();
 
 
-
         logFavorites(context);
     }
 
