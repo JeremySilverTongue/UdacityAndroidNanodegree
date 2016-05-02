@@ -5,7 +5,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,11 +62,8 @@ public class MovieGridFragment extends Fragment implements MovieListReceiver {
         }
 
 
-        
-        int columns =  root.getWidth() / MIN_COLUMN_WIDTH;
+        int columns = root.getWidth() / MIN_COLUMN_WIDTH;
         columns = Math.max(columns, 2);
-
-
 
 
         movieGridAdapter = new MovieGridAdapter(getContext(), (MovieSelectedListener) getContext());
@@ -79,7 +75,6 @@ public class MovieGridFragment extends Fragment implements MovieListReceiver {
         recyclerView.setLayoutManager(layoutManager);
 
 
-
         PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(movieGridAdapter);
         return root;
     }
@@ -88,10 +83,9 @@ public class MovieGridFragment extends Fragment implements MovieListReceiver {
     public void receiveMovies(List<MovieDb> nowPlaying) {
 
 
-
-            movieGridAdapter.setMovies(nowPlaying);
-            movieGridAdapter.notifyDataSetChanged();
-            recyclerView.scrollToPosition(scrollPosition);
+        movieGridAdapter.setMovies(nowPlaying);
+        movieGridAdapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(scrollPosition);
 
         if (nowPlaying.size() == 0 && MoviePrefs.showFavorites(getContext())) {
             errorTextView.setText(getString(R.string.error_no_favorites));

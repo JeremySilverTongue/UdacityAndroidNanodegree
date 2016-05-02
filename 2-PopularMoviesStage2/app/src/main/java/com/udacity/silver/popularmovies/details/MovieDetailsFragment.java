@@ -1,7 +1,10 @@
 package com.udacity.silver.popularmovies.details;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -22,6 +26,8 @@ import com.udacity.silver.popularmovies.tasks.GetReviewsAndVideosTask;
 import com.udacity.silver.popularmovies.tasks.GetReviewsAndVideosTask.ReviewsAndVideosReceiver;
 
 import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.Reviews;
+import info.movito.themoviedbapi.model.Video;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -56,13 +62,82 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
     }
 
     @Override
-    public void receiveMovie(MovieDb movie) {
+    public void receiveMovie(final MovieDb movie) {
         titleView.setText(movie.getTitle());
         releaseDateView.setText(movie.getReleaseDate());
 
 
         rating.setRating(movie.getVoteAverage());
         plot.setText(movie.getOverview());
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+
+        for (final Video video : movie.getVideos()) {
+
+
+            if (video.getSite().equals(getString(R.string.youtube))) {
+                View videoView = inflater.inflate(R.layout.video, mainLayout, false);
+
+                TextView name = (TextView) videoView.findViewById(R.id.video_name);
+                ImageButton share = (ImageButton) videoView.findViewById(R.id.share);
+                ImageButton play = (ImageButton) videoView.findViewById(R.id.play);
+
+
+                final Uri videoUri = Uri.parse(getString(R.string.youtube_short_url))
+                        .buildUpon()
+                        .appendPath(video.getKey())
+                        .build();
+
+
+                play.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent viewIntent = new Intent(Intent.ACTION_VIEW, videoUri);
+                        startActivity(viewIntent);
+                    }
+                });
+
+                share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String shareString = movie.getTitle() + " " + video.getName() + " " + videoUri.toString();
+
+                        Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
+                                .setType("text/plain")
+                                .setText(shareString)
+                                .getIntent();
+
+
+                        startActivity(shareIntent);
+                    }
+                });
+                
+
+
+
+                name.setText(video.getName());
+
+                mainLayout.addView(videoView);
+
+            }
+
+
+        }
+
+        for (Reviews review : movie.getReviews()) {
+
+            View reviewView = inflater.inflate(R.layout.movie_review, mainLayout, false);
+
+            TextView author = (TextView) reviewView.findViewById(R.id.review_author);
+            TextView content = (TextView) reviewView.findViewById(R.id.review_content);
+
+            author.setText(review.getAuthor());
+            content.setText(review.getContent());
+            mainLayout.addView(reviewView);
+        }
+
 
     }
 

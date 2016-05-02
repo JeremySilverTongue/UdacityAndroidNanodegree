@@ -55,8 +55,12 @@ public final class MoviePrefs {
         }
 
         Editor editor = prefs.edit();
+        editor.remove(key);
         editor.putStringSet(key, favorites);
+
         editor.apply();
+
+
 
         logFavorites(context);
     }
@@ -87,6 +91,17 @@ public final class MoviePrefs {
         String key = context.getString(R.string.pref_show_favorites_key);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean(key, false);
+    }
+
+    public static String sortOrder(Context context) {
+
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(
+                context.getString(R.string.pref_sort_order_key),
+                context.getString(R.string.pref_sort_oder_default)
+        );
+
     }
 
 }

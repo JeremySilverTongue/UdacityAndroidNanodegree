@@ -52,20 +52,21 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         Log.d(LOG_TAG, "Preferences updated");
+        notifyDataSetChanged();
         checkSortOrder();
     }
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(context)
                 .inflate(R.layout.movie, parent, false);
         return new MovieViewHolder(v, parent.getContext());
     }
 
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, final int position) {
-        String baseUrl = holder.context.getString(R.string.base_URL);
-        String size = holder.context.getString(R.string.thumb_size);
+        String baseUrl = context.getString(R.string.base_URL);
+        String size = context.getString(R.string.thumb_size);
         String URL = baseUrl + size + movies.get(position).getPosterPath();
         final int id = getMovies().get(holder.getAdapterPosition()).getId();
 
@@ -87,10 +88,12 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
         });
 
 
+
+
         holder.favoriteButton.setChecked(MoviePrefs.isFavorite(context, id));
 
 
-        Picasso.with(holder.context).load(URL).placeholder(R.drawable.placeholder).into(holder.moviePoster);
+        Picasso.with(context).load(URL).placeholder(R.drawable.placeholder).into(holder.moviePoster);
     }
 
     @Override
@@ -99,12 +102,7 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
     }
 
     private void checkSortOrder() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String sortOrder = preferences.getString(
-                context.getString(R.string.pref_sort_order_key),
-                context.getString(R.string.pref_sort_oder_default)
-        );
-        if (sortOrder.equals(context.getString(R.string.pref_sort_order_popular_key))) {
+        if (MoviePrefs.sortOrder(context).equals(context.getString(R.string.pref_sort_order_popular_key))) {
             Log.d(LOG_TAG, "Sorting by most popular");
             Collections.sort(movies, new Comparator<MovieDb>() {
                 @Override
@@ -129,13 +127,12 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
 
         public ImageView moviePoster;
         public CheckBox favoriteButton;
-        public Context context;
+
 
         public MovieViewHolder(View view, Context context) {
             super(view);
             moviePoster = (ImageView) view.findViewById(R.id.poster);
             favoriteButton = (CheckBox) view.findViewById(R.id.favorite_button);
-            this.context = context;
         }
     }
 }

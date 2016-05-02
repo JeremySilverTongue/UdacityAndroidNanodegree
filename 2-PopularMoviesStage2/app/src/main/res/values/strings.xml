@@ -28,5 +28,9 @@
 
     <string name="error_no_favorites">Looks like you haven\'t added any favorites!</string>
 
+    <string name="youtube">YouTube</string>
+    <string name="youtube_base_url">https://www.youtube.com/watch</string>
+    <string name="youtube_short_url">https://youtu.be/</string>
+    <string name="youtube_watch_param">watch</string>
 
 </resources>
