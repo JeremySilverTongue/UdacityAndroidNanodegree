@@ -12,7 +12,6 @@ public class GetReviewsAndVideosTask extends AsyncTask<Integer, Void, MovieDb> {
     private final ReviewsAndVideosReceiver receiver;
     private final String apiKey;
 
-
     public GetReviewsAndVideosTask(ReviewsAndVideosReceiver receiver, String apiKey) {
         this.receiver = receiver;
         this.apiKey = apiKey;
@@ -20,10 +19,7 @@ public class GetReviewsAndVideosTask extends AsyncTask<Integer, Void, MovieDb> {
 
     @Override
     protected MovieDb doInBackground(Integer... ids) {
-
         TmdbMovies moviesApi = new TmdbApi(apiKey).getMovies();
-
-
         return moviesApi.getMovie(ids[0], "en", MovieMethod.reviews, MovieMethod.videos);
     }
 

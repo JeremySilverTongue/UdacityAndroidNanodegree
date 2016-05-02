@@ -50,8 +50,6 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        Log.d(LOG_TAG, "Preferences updated");
-        notifyDataSetChanged();
         checkSortOrder();
     }
 
@@ -77,7 +75,6 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
             }
         });
 
-
         holder.favoriteButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,9 +83,7 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
             }
         });
 
-
         holder.favoriteButton.setChecked(MoviePrefs.isFavorite(context, id));
-
 
         Picasso.with(context).load(URL).placeholder(R.drawable.placeholder).into(holder.moviePoster);
     }
@@ -117,7 +112,6 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieViewHolder> impl
             });
         }
         notifyDataSetChanged();
-
     }
 
     public static final class MovieViewHolder extends RecyclerView.ViewHolder {

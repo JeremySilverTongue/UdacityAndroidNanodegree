@@ -29,17 +29,13 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.Reviews;
 import info.movito.themoviedbapi.model.Video;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosReceiver {
 
     public static final String LOG_TAG = MovieDetailsFragment.class.getName();
-
     public static final String MOVIE_EXTRA = "Movie Extra";
 
-    MovieDb movie;
-
+    private MovieDb movie;
     private LinearLayout mainLayout;
     private CheckBox favoriteButton;
     private TextView titleView;
@@ -47,14 +43,6 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
     private ImageView poster;
     private RatingBar rating;
     private TextView plot;
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -66,15 +54,12 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
         titleView.setText(movie.getTitle());
         releaseDateView.setText(movie.getReleaseDate());
 
-
         rating.setRating(movie.getVoteAverage());
         plot.setText(movie.getOverview());
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
-
         for (final Video video : movie.getVideos()) {
-
 
             if (video.getSite().equals(getString(R.string.youtube))) {
                 View videoView = inflater.inflate(R.layout.video, mainLayout, false);
@@ -83,12 +68,24 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
                 ImageButton share = (ImageButton) videoView.findViewById(R.id.share);
                 ImageButton play = (ImageButton) videoView.findViewById(R.id.play);
 
+                name.setText(video.getName());
 
                 final Uri videoUri = Uri.parse(getString(R.string.youtube_short_url))
                         .buildUpon()
                         .appendPath(video.getKey())
                         .build();
 
+                share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String shareString = movie.getTitle() + " " + video.getName() + " " + videoUri.toString();
+                        Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
+                                .setType("text/plain")
+                                .setText(shareString)
+                                .getIntent();
+                        startActivity(shareIntent);
+                    }
+                });
 
                 play.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -98,34 +95,11 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
                     }
                 });
 
-                share.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        String shareString = movie.getTitle() + " " + video.getName() + " " + videoUri.toString();
-
-                        Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
-                                .setType("text/plain")
-                                .setText(shareString)
-                                .getIntent();
-
-
-                        startActivity(shareIntent);
-                    }
-                });
-
-
-                name.setText(video.getName());
-
                 mainLayout.addView(videoView);
-
             }
-
-
         }
 
         for (Reviews review : movie.getReviews()) {
-
             View reviewView = inflater.inflate(R.layout.movie_review, mainLayout, false);
 
             TextView author = (TextView) reviewView.findViewById(R.id.review_author);
@@ -141,9 +115,6 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
         String baseUrl = getContext().getString(R.string.base_URL);
         String size = getContext().getString(R.string.thumb_size_large);
         if (movie != null) {
@@ -162,14 +133,11 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
 
         if (arguments != null) {
             movie = (MovieDb) arguments.getSerializable(MOVIE_EXTRA);
-        } else {
-            Log.d(LOG_TAG, "How the hell did you get created with no arguments?");
         }
 
         GetReviewsAndVideosTask reviewsAndVideosTask = new GetReviewsAndVideosTask(this, BuildConfig.MOVIE_DB_API_KEY);
 
         reviewsAndVideosTask.execute(movie.getId());
-
 
         mainLayout = (LinearLayout) root.findViewById(R.id.main_linear_layout);
         favoriteButton = (CheckBox) root.findViewById(R.id.favorite_button);
@@ -188,9 +156,7 @@ public class MovieDetailsFragment extends Fragment implements ReviewsAndVideosRe
             }
         });
 
-
         favoriteButton.setChecked(MoviePrefs.isFavorite(getContext(), movie.getId()));
-
 
         return root;
     }

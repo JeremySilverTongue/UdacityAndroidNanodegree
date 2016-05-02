@@ -18,20 +18,14 @@ import info.movito.themoviedbapi.model.MovieDb;
 public class MovieGridActivity extends AppCompatActivity implements MovieSelectedListener {
 
     public static final String TAG = MovieGridActivity.class.getName();
+    public static final String SELECTED_MOVIE_KEY = "Selected movie";
 
-    public static final String SELECTED_MOVIE_KEY = "FART FART FART FART";
-
-    boolean twoPane;
-
+    private boolean twoPane;
     private MovieDb selectedMovie;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
-
         outState.putSerializable(SELECTED_MOVIE_KEY, selectedMovie);
-
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -41,14 +35,11 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
 
         if (findViewById(R.id.movie_details_container) != null) {
             twoPane = true;
-            Log.d(TAG, "Looks like we're two pane");
             if (savedInstanceState != null) {
                 MovieDb movie = (MovieDb) savedInstanceState.getSerializable(SELECTED_MOVIE_KEY);
                 movieSelected(movie);
             }
-
         } else {
-            Log.d(TAG, "Looks like we're one pane");
             twoPane = false;
         }
 
@@ -65,7 +56,6 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, MovieSettingsActivity.class));
             return true;
@@ -90,8 +80,6 @@ public class MovieGridActivity extends AppCompatActivity implements MovieSelecte
                 intent.putExtra(MovieDetailsFragment.MOVIE_EXTRA, movie);
                 startActivity(intent);
             }
-        } else {
-            Log.d(TAG, "How the crap did this get called with a null movie?");
         }
     }
 

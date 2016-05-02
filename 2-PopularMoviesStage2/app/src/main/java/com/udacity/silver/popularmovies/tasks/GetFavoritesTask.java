@@ -18,7 +18,6 @@ import info.movito.themoviedbapi.model.MovieDb;
 
 public class GetFavoritesTask extends AsyncTask<String, Void, List<MovieDb>> {
 
-
     public static final String LOG_TAG = GetFavoritesTask.class.getName();
     private Context context;
     private MovieListReceiver receiver;
@@ -27,7 +26,6 @@ public class GetFavoritesTask extends AsyncTask<String, Void, List<MovieDb>> {
         this.context = context;
         this.receiver = receiver;
     }
-
 
     @Override
     protected List<MovieDb> doInBackground(String... strings) {
@@ -46,7 +44,6 @@ public class GetFavoritesTask extends AsyncTask<String, Void, List<MovieDb>> {
         for (Integer fav : favs) {
             movies.add(moviesApi.getMovie(fav, ""));
         }
-
 
         return movies;
     }

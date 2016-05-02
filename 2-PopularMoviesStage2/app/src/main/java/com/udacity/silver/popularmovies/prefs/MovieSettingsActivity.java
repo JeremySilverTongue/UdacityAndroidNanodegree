@@ -21,17 +21,14 @@ public class MovieSettingsActivity extends AppCompatActivity {
 
     public static class MoviePreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.movie_preferences);
 
-
             Preference orderBy = findPreference(getString(R.string.pref_sort_order_key));
 
             bindPreferenceSummaryToValue(orderBy);
-
         }
 
         @Override

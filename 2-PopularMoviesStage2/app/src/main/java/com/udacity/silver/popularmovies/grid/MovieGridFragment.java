@@ -37,16 +37,13 @@ public class MovieGridFragment extends Fragment implements MovieListReceiver {
     @Override
     public void onResume() {
         super.onResume();
-
         errorTextView.setText("");
-
         String apiKey = BuildConfig.MOVIE_DB_API_KEY;
         if (MoviePrefs.showFavorites(getContext())) {
             new GetFavoritesTask(getContext(), this).execute(apiKey);
         } else {
             new GetNowPlayingTask(this).execute(apiKey);
         }
-
     }
 
     @Override
@@ -61,19 +58,13 @@ public class MovieGridFragment extends Fragment implements MovieListReceiver {
             scrollPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY, 0);
         }
 
-
         int columns = root.getWidth() / MIN_COLUMN_WIDTH;
         columns = Math.max(columns, 2);
 
-
         movieGridAdapter = new MovieGridAdapter(getContext(), (MovieSelectedListener) getContext());
-
-
         recyclerView.setAdapter(movieGridAdapter);
-
         layoutManager = new GridLayoutManager(getContext(), columns);
         recyclerView.setLayoutManager(layoutManager);
-
 
         PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(movieGridAdapter);
         return root;
@@ -81,12 +72,9 @@ public class MovieGridFragment extends Fragment implements MovieListReceiver {
 
 
     public void receiveMovies(List<MovieDb> nowPlaying) {
-
-
         movieGridAdapter.setMovies(nowPlaying);
         movieGridAdapter.notifyDataSetChanged();
         recyclerView.scrollToPosition(scrollPosition);
-
         if (nowPlaying.size() == 0 && MoviePrefs.showFavorites(getContext())) {
             errorTextView.setText(getString(R.string.error_no_favorites));
         }
