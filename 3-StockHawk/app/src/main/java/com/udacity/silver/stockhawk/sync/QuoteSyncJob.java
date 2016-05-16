@@ -17,7 +17,6 @@ import com.udacity.silver.stockhawk.data.Contract;
 import com.udacity.silver.stockhawk.data.PrefUtils;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -38,11 +37,7 @@ public final class QuoteSyncJob {
     public static final String ACTION_DATA_UPDATED = "com.udacity.silver.stockhawk.ACTION_DATA_UPDATED";
     public static final int PERIOD = 300;
 
-
-
     public static void getQuotes(Context context) {
-
-        DateFormat dateFormat = DateFormat.getDateInstance();
 
         Timber.d("Running sync job");
 

@@ -5,6 +5,8 @@
 
     <string name="pref_stocks_key" translatable="false">stocks</string>
 
+    <string name="chart_no_data">No data</string>
+
 
     <string name="pref_display_mode_title">Display Mode</string>
     <string name="pref_display_mode_key" translatable="false">displayMode</string>

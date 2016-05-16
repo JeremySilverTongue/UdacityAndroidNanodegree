@@ -13,8 +13,6 @@ public class Contract {
     public static final String PATH_QUOTE = "quote";
     public static final String PATH_QUOTE_WITH_SYMBOL = "quote/*";
 
-    public static final String PATH_HISTORY = "history";
-
     public static final class Quote implements BaseColumns {
 
         public static final Uri uri = BASE_URI.buildUpon().appendPath(PATH_QUOTE).build();

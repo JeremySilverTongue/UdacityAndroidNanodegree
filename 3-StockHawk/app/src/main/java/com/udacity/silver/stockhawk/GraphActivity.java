@@ -84,9 +84,9 @@ public class GraphActivity extends AppCompatActivity implements LoaderManager.Lo
             dataSet.setValueTextColor(textColor);
             LineData lineData = new LineData(dates, dataSet);
 
-            chart.setDescription(" This is a description");
+            chart.setDescription("");
 
-            chart.setNoDataText("No data");
+            chart.setNoDataText(getString(R.string.chart_no_data));
 
 
             chart.getLegend().setTextColor(textColor);

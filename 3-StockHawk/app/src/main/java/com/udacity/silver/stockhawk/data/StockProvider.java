@@ -16,7 +16,6 @@ public class StockProvider extends ContentProvider {
 
     static final int QUOTE = 100;
     static final int QUOTE_FOR_SYMBOL = 101;
-    static final int HISTORY = 200;
 
     static UriMatcher uriMatcher = buildUriMatcher();
 

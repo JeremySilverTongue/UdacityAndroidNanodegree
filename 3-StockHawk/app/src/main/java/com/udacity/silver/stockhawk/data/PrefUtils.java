@@ -18,9 +18,6 @@ public final class PrefUtils {
     private PrefUtils() {
     }
 
-//    public static String getDisplayMode(Context context) {
-//    }
-
     public static Set<String> getStocks(Context context) {
         String stocksKey = context.getString(R.string.pref_stocks_key);
         String initializedKey = context.getString(R.string.pref_stocks_initialized_key);
