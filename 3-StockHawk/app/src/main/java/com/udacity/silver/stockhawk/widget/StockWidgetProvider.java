@@ -12,7 +12,7 @@ import android.widget.RemoteViews;
 
 import com.udacity.silver.stockhawk.MainActivity;
 import com.udacity.silver.stockhawk.R;
-import com.udacity.silver.stockhawk.graph.GraphActivity;
+import com.udacity.silver.stockhawk.GraphActivity;
 import com.udacity.silver.stockhawk.sync.QuoteSyncJob;
 
 

@@ -23,9 +23,7 @@ import android.widget.Toast;
 
 import com.udacity.silver.stockhawk.data.Contract;
 import com.udacity.silver.stockhawk.data.PrefUtils;
-import com.udacity.silver.stockhawk.graph.GraphActivity;
 import com.udacity.silver.stockhawk.sync.QuoteSyncJob;
-import com.udacity.silver.stockhawk.views.StockAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

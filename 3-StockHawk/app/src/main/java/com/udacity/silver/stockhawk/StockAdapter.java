@@ -1,4 +1,4 @@
-package com.udacity.silver.stockhawk.views;
+package com.udacity.silver.stockhawk;
 
 //import android.support.v7.widget.RecyclerView;
 
@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.udacity.silver.stockhawk.R;
 import com.udacity.silver.stockhawk.data.Contract;
 import com.udacity.silver.stockhawk.data.PrefUtils;
 

@@ -55,7 +55,7 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity
-            android:name=".graph.GraphActivity"
+            android:name=".GraphActivity"
             android:parentActivityName=".MainActivity"/>
     </application>
 

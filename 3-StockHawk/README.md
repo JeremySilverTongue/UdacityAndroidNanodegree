@@ -15,7 +15,7 @@ The user's stocks of interest are stored as a set of strings in the user's share
 
 #### Stock Hawk Stocks can be displayed in a collection widget.
 
-
+Done and done, with a nice preview image as well.
 
 #### Stock Hawk app has content descriptions for all buttons.
 

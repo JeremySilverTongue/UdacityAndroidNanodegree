@@ -1,4 +1,4 @@
-package com.udacity.silver.stockhawk.graph;
+package com.udacity.silver.stockhawk;
 
 import android.database.Cursor;
 import android.graphics.Color;
@@ -17,7 +17,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.XAxisValueFormatter;
 import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.udacity.silver.stockhawk.R;
 import com.udacity.silver.stockhawk.data.Contract;
 
 import java.io.IOException;

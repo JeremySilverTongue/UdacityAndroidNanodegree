@@ -20,26 +20,19 @@ android {
 
     }
     buildTypes {
-//        debug {
-//            minifyEnabled false
-//            shrinkResources true
-//            proguardFile "proguard-butterknife-7.pro"
-//            proguardFile "proguard-guava.pro"
-//            proguardFile "proguard-square-okhttp3.pro"
-//            proguardFile "proguard-square-okio.pro"
-//            proguardFile "proguard-support-v7-appcompat.pro"
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
 
         release {
-            minifyEnabled true
+            minifyEnabled false
             shrinkResources true
             proguardFile "proguard-butterknife-7.pro"
+            proguardFile "proguard-google-play-services.pro"
             proguardFile "proguard-guava.pro"
             proguardFile "proguard-square-okhttp3.pro"
             proguardFile "proguard-square-okio.pro"
             proguardFile "proguard-support-v7-appcompat.pro"
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 

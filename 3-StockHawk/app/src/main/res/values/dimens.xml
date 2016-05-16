@@ -9,7 +9,7 @@
 
     <dimen name="widget_detail_default_width">250dp</dimen>
     <dimen name="widget_detail_default_height">180dp</dimen>
-    <dimen name="widget_detail_min_resize_width">220dp</dimen>
+    <dimen name="widget_detail_min_resize_width">@dimen/widget_detail_default_width</dimen>
     <dimen name="widget_detail_min_resize_height">@dimen/widget_detail_default_height</dimen>
 
 
