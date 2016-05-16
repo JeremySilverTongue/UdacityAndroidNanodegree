@@ -1,20 +1,44 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+apply plugin: 'com.neenbedankt.android-apt'
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.example.sam_chordas.stockhawk"
-        minSdkVersion 15
+        applicationId "com.udacity.silver.stockhawk"
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
+
     }
     buildTypes {
+//        debug {
+//            minifyEnabled false
+//            shrinkResources true
+//            proguardFile "proguard-butterknife-7.pro"
+//            proguardFile "proguard-guava.pro"
+//            proguardFile "proguard-square-okhttp3.pro"
+//            proguardFile "proguard-square-okio.pro"
+//            proguardFile "proguard-support-v7-appcompat.pro"
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            proguardFile "proguard-butterknife-7.pro"
+            proguardFile "proguard-guava.pro"
+            proguardFile "proguard-square-okhttp3.pro"
+            proguardFile "proguard-square-okio.pro"
+            proguardFile "proguard-support-v7-appcompat.pro"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -22,22 +46,23 @@ android {
     lintOptions {
         warning 'InvalidPackage'
     }
-
-}
-
-repositories {
-    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile 'com.google.guava:guava:19.0'
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
-    compile 'com.squareup.okhttp:okhttp:2.5.0'
-    apt 'net.simonvt.schematic:schematic-compiler:0.6.3'
-    compile 'net.simonvt.schematic:schematic:0.6.3'
+    compile 'com.squareup.okio:okio:1.8.0'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.yahoofinance-api:YahooFinanceAPI:3.2.0'
+    compile 'com.jakewharton.timber:timber:4.1.2'
     compile 'com.melnykov:floatingactionbutton:1.2.0'
-    compile 'com.android.support:design:23.3.0'
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
-        transitive = true
-    }
+    compile 'net.sf.opencsv:opencsv:2.3'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 }

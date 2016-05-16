@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KagiChart">
+        <attr name="history" format="integer" />
+        <attr name="upColor" format="color" />
+        <attr name="downColor" format="color" />
+        <attr name="upWidth" format="dimension" />
+        <attr name="downWidth" format="dimension" />
+        <attr name="stepWidth" format="dimension" />
+
+    </declare-styleable>
+</resources>
