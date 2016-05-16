@@ -2,6 +2,8 @@
     android:insetRight="112dp">
     <shape>
         <solid android:color="#1E000000" />
-        <size android:width="1dp" android:height="1dp" />
+        <size
+            android:width="1dp"
+            android:height="1dp" />
     </shape>
 </inset>
