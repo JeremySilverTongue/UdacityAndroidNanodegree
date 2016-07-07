@@ -1,0 +1,15 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0-alpha4'
+        classpath 'com.google.gms:google-services:1.3.0-beta1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
