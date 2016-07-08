@@ -36,6 +36,7 @@ import com.example.android.sunshine.app.R;
 import com.example.android.sunshine.app.Utility;
 import com.example.android.sunshine.app.data.WeatherContract;
 import com.example.android.sunshine.app.muzei.WeatherMuzeiSource;
+import com.google.android.gms.common.api.ResultCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +50,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
@@ -277,6 +279,9 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                 }
             }
         }
+
+
+
         return;
     }
 
@@ -441,9 +446,11 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                         WeatherContract.WeatherEntry.COLUMN_DATE + " <= ?",
                         new String[]{Long.toString(dayTime.setJulianDay(julianStartDay - 1))});
 
+                notifyWear();
                 updateWidgets();
                 updateMuzei();
                 notifyWeather();
+
             }
             Log.d(LOG_TAG, "Sync Complete. " + cVVector.size() + " Inserted");
             setLocationStatus(getContext(), LOCATION_STATUS_OK);
@@ -453,6 +460,27 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
             e.printStackTrace();
             setLocationStatus(getContext(), LOCATION_STATUS_SERVER_INVALID);
         }
+    }
+
+    private void notifyWear(){
+
+        // TODO: Finish notification
+
+//        PutDataMapRequest dataMap = PutDataMapRequest.create(IMAGE_PATH);
+//        dataMap.getDataMap().putAsset(IMAGE_KEY, asset);
+//        dataMap.getDataMap().putLong("time", new Date().getTime());
+//        PutDataRequest request = dataMap.asPutDataRequest();
+//        request.setUrgent();
+//
+//        Wearable.DataApi.putDataItem(mGoogleApiClient, request)
+//                .setResultCallback(new ResultCallback<DataItemResult>() {
+//                    @Override
+//                    public void onResult(DataItemResult dataItemResult) {
+//                        LOGD(TAG, "Sending image was successful: " + dataItemResult.getStatus()
+//                                .isSuccess());
+//                    }
+//                });
+
     }
 
     private void updateWidgets() {
