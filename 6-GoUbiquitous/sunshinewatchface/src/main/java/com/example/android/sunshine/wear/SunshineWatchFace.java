@@ -25,24 +25,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.view.SurfaceHolder;
 import android.view.WindowInsets;
-
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.Wearable;
 
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
@@ -56,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  * Digital watch face with seconds. In ambient mode, the seconds aren't displayed. On devices with
  * low-bit ambient mode, the text is drawn without anti-aliasing in ambient mode.
  */
-public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class SunshineWatchFace extends CanvasWatchFaceService {
     private static final Typeface NORMAL_TYPEFACE =
             Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
 
@@ -71,34 +63,13 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
      */
     private static final int MSG_UPDATE_TIME = 0;
 
-    GoogleApiClient client;
 
     @Override
     public Engine onCreateEngine() {
 
-        client = new GoogleApiClient.Builder(getApplicationContext()).addApi(Wearable.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this).build();
-
-        client.connect();
-
         return new Engine();
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 
     private static class EngineHandler extends Handler {
         private final WeakReference<SunshineWatchFace.Engine> mWeakReference;
@@ -125,7 +96,6 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
         boolean mRegisteredTimeZoneReceiver = false;
 
 
-
         Paint backgroundPaint;
         Paint hourPaint;
         Paint minutesPaint;
@@ -135,7 +105,7 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
 
         Bitmap weatherIcon;
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd yyyy",Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd yyyy", Locale.getDefault());
 
         boolean mAmbient;
         Calendar mCalendar;
@@ -157,11 +127,9 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
         boolean mLowBitAmbient;
 
 
-
         @Override
         public void onCreate(SurfaceHolder holder) {
             super.onCreate(holder);
-
 
 
             setWatchFaceStyle(new WatchFaceStyle.Builder(SunshineWatchFace.this)
@@ -188,6 +156,9 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
 
             weatherIcon = BitmapFactory.decodeResource(getResources(), R.drawable.art_clear);
 
+//            weatherIcon.setWidth(bounds.width()/8);
+//            weatherIcon.setHeight(bounds.height()/8);
+
             mCalendar = Calendar.getInstance();
         }
 
@@ -207,15 +178,19 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
             String minutes = String.format(Locale.getDefault(), ":%02d", mCalendar.get(Calendar.MINUTE));
             String date = dateFormat.format(new Date());
 //            String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-            canvas.drawText(hours, bounds.width()/2, bounds.height() / 4, hourPaint);
-            canvas.drawText(minutes, bounds.width()/2, bounds.height() / 4, minutesPaint);
+            canvas.drawText(hours, bounds.width() / 2, bounds.height() / 4, hourPaint);
+            canvas.drawText(minutes, bounds.width() / 2, bounds.height() / 4, minutesPaint);
 
-            canvas.drawText(date, bounds.width()/2, bounds.height()/ 2, datePaint);
+            canvas.drawText(date, bounds.width() / 2, bounds.height() / 2, datePaint);
 
-            weatherIcon.setWidth(bounds.width()/8);
-            weatherIcon.setHeight(bounds.height()/8);
 
-            canvas.drawBitmap(weatherIcon, bounds.width()/3, bounds.height()* 3/4, null);
+            canvas.drawBitmap(weatherIcon, bounds.width() / 3, bounds.height() * 3 / 4, null);
+
+            Rect src = new Rect(0, 0, weatherIcon.getWidth() - 1, weatherIcon.getHeight() - 1);
+            Rect dest = new Rect(0, 0, 100 - 1, 20 - 1);
+            canvas.drawBitmap(weatherIcon, src, dest, null);
+
+
 //            canvas.drawText(date, mXOffset, mYOffset + mTextPaint.getTextSize(), mTextPaint);
         }
 
@@ -311,7 +286,6 @@ public class SunshineWatchFace extends CanvasWatchFaceService implements GoogleA
             // whether we're in ambient mode), so we may need to start or stop the timer.
             updateTimer();
         }
-
 
 
         /**
