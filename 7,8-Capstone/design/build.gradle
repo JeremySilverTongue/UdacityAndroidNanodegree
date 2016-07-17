@@ -1,0 +1,65 @@
+/*
+ * Usage:   
+ *    all LaTeX source files go in $rawDirectory
+ *    base document to 'cook'  should match content of $latexFile
+ *    build script delivers resulting PDF file to $cookedDirectory
+*/
+
+defaultTasks 'full'
+
+ext { documentBase = '42WinksProposal' }
+
+project.ext {
+  latexFile = documentBase + '.tex'
+  pdfFile = documentBase + '.pdf'
+  rawDirectory = 'src'
+  cookedDirectory = 'build'
+}
+
+task cook(type: Exec) {
+  doFirst {
+    println "Cooking $project.latexFile in /$project.rawDirectory."
+  }
+
+  outputs.upToDateWhen{false}
+  workingDir project.rawDirectory 
+  standardOutput = new ByteArrayOutputStream() // stops output to STDOUT
+
+  2.times {
+    commandLine 'pdflatex', project.documentBase
+  }
+
+  outputs.file file("$project.rawDirectory/$project.pdfFile")
+
+  doLast {
+    println "Cooked $project.latexFile to $project.pdfFile."
+  }
+}
+
+task deliver(type: Copy) {
+  outputs.upToDateWhen{false}
+
+  from cook
+  into project.cookedDirectory
+
+  doLast {
+    println "Delivered $project.pdfFile to /$project.cookedDirectory."
+  }
+}
+
+task flush(type: Delete) {
+  dependsOn deliver
+  outputs.upToDateWhen{false}
+
+  delete {
+    fileTree(dir: project.rawDirectory, excludes: ['**/*.tex', '**/*.cls'])
+  } 
+
+  doLast {
+    println "Flushed /$project.rawDirectory of temporary $documentBase files."
+  }
+}
+
+task full {
+  dependsOn flush
+}
