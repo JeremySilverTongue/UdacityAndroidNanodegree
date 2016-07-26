@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="trophy_case_keys">
+        <item>@string/trophy_first_night_key</item>
+    </string-array>
+
+    <string-array name="trophy_case_titles">
+        <item>@string/trophy_first_night_title</item>
+    </string-array>
+
+    <string-array name="trophy_case_descriptions">
+        <item>@string/trophy_first_night_description</item>
+    </string-array>
+
+</resources>

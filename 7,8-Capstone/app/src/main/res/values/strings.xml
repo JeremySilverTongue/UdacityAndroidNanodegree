@@ -5,4 +5,20 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sleep_now">Sleep Now!</string>
+    <string name="log">Log</string>
+    <string name="trophy_case">Trophy Case</string>
+
+
+
+
+
+    <string name="trophy_first_night_key" translatable="false">first_night</string>
+    <string name="trophy_first_night_title">First Night</string>
+    <string name="trophy_first_night_description">Tracked your first night</string>
+
+
 </resources>
