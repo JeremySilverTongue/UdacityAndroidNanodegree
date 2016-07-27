@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.udacity.silver.sleep">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="com.udacity.silver.sleep.WinksApp"
         android:allowBackup="true"

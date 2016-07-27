@@ -14,7 +14,5 @@ public class WinksApp extends Application {
         Timber.uprootAll();
         Timber.plant(new Timber.DebugTree());
 
-
-        Timber.d("This thing on?");
     }
 }

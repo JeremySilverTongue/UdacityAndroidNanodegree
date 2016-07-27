@@ -6,6 +6,7 @@ public final class Utilities {
 
     private final static long MILLIS_PER_HOUR = 1000 * 60 * 60;
     private final static long MILLIS_PER_DAY = MILLIS_PER_HOUR * 24;
+
     private Utilities() {
     }
 

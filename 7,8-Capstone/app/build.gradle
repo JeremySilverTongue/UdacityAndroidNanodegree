@@ -31,7 +31,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.1.1'
     compile 'com.android.support:support-v4:24.1.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile 'com.google.firebase:firebase-ads:9.2.1'
+    compile 'com.google.firebase:firebase-core:9.2.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 check {
     checkstyle { config hard() }

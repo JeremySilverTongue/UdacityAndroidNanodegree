@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.udacity.silver.sleep.R;
 import com.udacity.silver.sleep.data.SleepContract;
 import com.udacity.silver.sleep.data.SleepPreferenceUtils;
@@ -32,10 +35,10 @@ public class SleepFragment extends Fragment {
     @BindView(R.id.awake_layout)
     View awakeLayout;
 
+    @BindView(R.id.ad_view)
+    AdView adView;
 
-    public SleepFragment() {
-        // Required empty public constructor
-    }
+    public SleepFragment() {}
 
 
     @Override
@@ -67,6 +70,9 @@ public class SleepFragment extends Fragment {
             }
         });
 
+        MobileAds.initialize(getContext(), "ca-app-pub-3940256099942544~3347511713");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         return root;
     }

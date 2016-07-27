@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "307803009689",
+    "firebase_url": "https://winks-786fe.firebaseio.com",
+    "project_id": "winks-786fe",
+    "storage_bucket": "winks-786fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307803009689:android:aca4ccbc0a798349",
+        "android_client_info": {
+          "package_name": "com.udacity.silver.sleep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307803009689-u63hismvscmjc2s7a6npnlqr7p5hn0ha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYJeY0uaZY5XAuYjodHLEriVUcUAgrBro"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
