@@ -72,11 +72,12 @@ public class SleepProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown URI:" + uri);
         }
 
+//        if (db.isOpen()) {
+//            db.close();
+//        }
+
         returnCursor.setNotificationUri(getContext().getContentResolver(), uri);
 
-        if (db.isOpen()) {
-            db.close();
-        }
 
         return returnCursor;
     }
@@ -108,12 +109,11 @@ public class SleepProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown URI:" + uri);
         }
 
+//        if (db.isOpen()) {
+//            db.close();
+//        }
+
         getContext().getContentResolver().notifyChange(uri, null);
-
-        if (db.isOpen()) {
-            db.close();
-        }
-
         return returnUri;
     }
 
@@ -144,6 +144,11 @@ public class SleepProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown URI:" + uri);
         }
+
+        if (db.isOpen()) {
+            db.close();
+        }
+
 
         if (rowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);

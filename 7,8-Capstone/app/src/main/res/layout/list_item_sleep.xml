@@ -8,21 +8,22 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         tools:text="06-22-1990" />
 
     <TextView
         android:id="@+id/sleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="8dp"
+        android:padding="4dp"
         tools:text="10:00pm" />
 
     <TextView
         android:id="@+id/wake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="4dp"
         tools:text="6:30am" />
 
     <TextView

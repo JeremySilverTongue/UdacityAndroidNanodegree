@@ -1,7 +1,12 @@
 package com.udacity.silver.sleep.data;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+
+import com.udacity.silver.sleep.utilities.Utilities;
 
 
 public final class SleepContract implements BaseColumns {
@@ -46,5 +51,23 @@ public final class SleepContract implements BaseColumns {
         return uri.getLastPathSegment();
     }
 
+
+    public static void addNight(Context context, long sleepTime, long wakeTime) {
+
+        ContentValues values = new ContentValues(4);
+
+
+        values.put(COLUMN_DAY, Utilities.normalizedDay(wakeTime));
+        values.put(COLUMN_SLEEP, sleepTime);
+        values.put(COLUMN_WAKE, sleepTime);
+        values.put(COLUMN_DURATION, Utilities.sleepHours(sleepTime, wakeTime));
+
+        context.getContentResolver().insert(SLEEP_URI, values);
+
+    }
+
+    public static Cursor getAllNights(Context context) {
+        return context.getContentResolver().query(SLEEP_URI, COLUMNS, null, null, COLUMN_DAY);
+    }
 
 }

@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".data.SleepProvider"
+            android:authorities="com.udacity.silver.sleep"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -13,20 +13,44 @@ public final class SleepPreferenceUtils {
     private final static String SLEEP_KEY = "sleep";
 
 
-    public void goToSleep(Context context) {
+    private SleepPreferenceUtils() {
+    }
+
+    public static void goToSleep(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putLong(SLEEP_KEY, Calendar.getInstance().getTimeInMillis());
         editor.apply();
     }
 
-    public long wakeUp(Context context) {
+    public static boolean isAsleep(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        long sleepTime = sharedPreferences.getLong(SLEEP_KEY, 0);
+        return sharedPreferences.contains(SLEEP_KEY);
+    }
+
+    public static void cancelSleep(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(SLEEP_KEY);
         editor.apply();
-        return sleepTime;
+    }
+
+    public static long getSleepTime(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getLong(SLEEP_KEY, 0);
+
+    }
+
+    public static void wakeUp(Context context) {
+        long sleepTime = getSleepTime(context);
+        cancelSleep(context);
+
+        if (sleepTime != 0) {
+            long wakeTime = Calendar.getInstance().getTimeInMillis();
+            SleepContract.addNight(context, sleepTime, wakeTime);
+        }
+
+
     }
 
 

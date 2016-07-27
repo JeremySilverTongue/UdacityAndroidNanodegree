@@ -11,26 +11,15 @@ import com.udacity.silver.sleep.R;
 public final class TrophyCaseUtils {
 
 
-    private TrophyCaseUtils(){}
+    private TrophyCaseUtils() {
+    }
 
-    public static void updateTrophyCaseContents(Context context){
+    public static void updateTrophyCaseContents(Context context) {
 
         context.getResources().getStringArray(R.array.trophy_case_keys);
 
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
 
 
 }

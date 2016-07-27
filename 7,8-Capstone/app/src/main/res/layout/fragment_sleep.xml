@@ -2,12 +2,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.udacity.silver.sleep.a42winks.com.udacity.silver.sleep.ui.SleepFragment">
+    tools:context="com.udacity.silver.sleep.ui.SleepFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/awake_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/sleep_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go to sleep" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/asleep_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="You're asleep!"
+
+            />
+
+        <Button
+            android:id="@+id/wake_up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wake up" />
+
+
+    </LinearLayout>
 
 </FrameLayout>
