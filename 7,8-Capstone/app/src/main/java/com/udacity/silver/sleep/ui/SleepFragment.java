@@ -38,7 +38,8 @@ public class SleepFragment extends Fragment {
     @BindView(R.id.ad_view)
     AdView adView;
 
-    public SleepFragment() {}
+    public SleepFragment() {
+    }
 
 
     @Override
