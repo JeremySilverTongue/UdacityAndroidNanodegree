@@ -3,15 +3,16 @@
     package="com.udacity.silver.sleep">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name="com.udacity.silver.sleep.WinksApp"
+        android:name=".WinksApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.udacity.silver.sleep.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,6 +27,9 @@
             android:authorities="com.udacity.silver.sleep"
             android:exported="false" />
 
+        <service
+            android:name=".services.TrophyCaseUpdate"
+            android:exported="false"></service>
     </application>
 
 </manifest>

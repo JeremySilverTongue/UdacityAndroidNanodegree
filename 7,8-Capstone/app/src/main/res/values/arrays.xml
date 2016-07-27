@@ -4,14 +4,20 @@
 
     <string-array name="trophy_case_keys">
         <item>@string/trophy_first_night_key</item>
+        <item>@string/trophy_eight_hours_key</item>
+        <item>@string/trophy_first_week_key</item>
     </string-array>
 
     <string-array name="trophy_case_titles">
         <item>@string/trophy_first_night_title</item>
+        <item>@string/trophy_eight_hours_title</item>
+        <item>@string/trophy_first_week_title</item>
     </string-array>
 
     <string-array name="trophy_case_descriptions">
         <item>@string/trophy_first_night_description</item>
+        <item>@string/trophy_eight_hours_description</item>
+        <item>@string/trophy_first_week_description</item>
     </string-array>
 
 </resources>

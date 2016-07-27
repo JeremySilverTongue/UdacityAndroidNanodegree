@@ -5,12 +5,15 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public final class SleepPreferenceUtils {
 
 
     private final static String SLEEP_KEY = "sleep";
+    private final static String ACHIEVEMENT_KEY = "cheevos";
 
 
     private SleepPreferenceUtils() {
@@ -51,6 +54,29 @@ public final class SleepPreferenceUtils {
         }
 
 
+    }
+
+    public static Set<String> getAchievements(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getStringSet(ACHIEVEMENT_KEY, new HashSet<String>());
+    }
+
+    public static void clearAchievements(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(ACHIEVEMENT_KEY);
+        editor.apply();
+    }
+
+    public static void addAchievement(Context context, String achievement) {
+
+        Set<String> achievements = getAchievements(context);
+        achievements.add(achievement);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet(ACHIEVEMENT_KEY, achievements);
+        editor.apply();
     }
 
 

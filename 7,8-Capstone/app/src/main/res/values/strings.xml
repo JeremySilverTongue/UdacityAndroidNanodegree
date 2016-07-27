@@ -20,5 +20,13 @@
     <string name="trophy_first_night_title">First Night</string>
     <string name="trophy_first_night_description">Tracked your first night</string>
 
+    <string name="trophy_eight_hours_key" translatable="false">eight_hours</string>
+    <string name="trophy_eight_hours_title">Eight Hours</string>
+    <string name="trophy_eight_hours_description">Got a solid 8 hours!</string>
+
+    <string name="trophy_first_week_key" translatable="false">first_week</string>
+    <string name="trophy_first_week_title">All Week</string>
+    <string name="trophy_first_week_description">You tracked a whole week of sleep!</string>
+
 
 </resources>
