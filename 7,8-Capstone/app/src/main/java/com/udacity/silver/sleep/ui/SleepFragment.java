@@ -1,8 +1,13 @@
 package com.udacity.silver.sleep.ui;
 
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.udacity.silver.sleep.R;
 import com.udacity.silver.sleep.data.SleepContract;
 import com.udacity.silver.sleep.data.SleepPreferenceUtils;
+import com.udacity.silver.sleep.services.WakeUpService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +28,7 @@ import timber.log.Timber;
 
 public class SleepFragment extends Fragment {
 
+    public static final int NOTIFICAITON_ID = 1234;
 
     @BindView(R.id.sleep_button)
     Button sleepButton;
@@ -57,6 +64,7 @@ public class SleepFragment extends Fragment {
                 awakeLayout.setVisibility(View.GONE);
                 asleepLayout.setVisibility(View.VISIBLE);
                 SleepPreferenceUtils.goToSleep(getContext());
+                createNotification();
             }
         });
 
@@ -76,6 +84,33 @@ public class SleepFragment extends Fragment {
         adView.loadAd(adRequest);
 
         return root;
+    }
+
+
+    public void createNotification(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext());
+        builder.setContentTitle("You're sleeping!");
+        builder.setSmallIcon(R.drawable.ic_stat_zzz);
+        builder.setOngoing(true);
+
+        Intent wakeUpIntent = new Intent(getContext(), WakeUpService.class);
+
+        PendingIntent pendingIntent = PendingIntent.getService(
+                getContext(),
+                0,
+                wakeUpIntent,
+                PendingIntent.FLAG_ONE_SHOT
+        );
+
+        builder.setContentIntent(pendingIntent);
+        builder.set
+
+        NotificationManager manager =
+                (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+        manager.notify(NOTIFICAITON_ID, builder.build());
+
     }
 
 }

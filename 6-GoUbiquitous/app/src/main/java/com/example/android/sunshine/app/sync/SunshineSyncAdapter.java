@@ -59,8 +59,6 @@ import java.net.URL;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-
 public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     public static final String ACTION_DATA_UPDATED =
             "com.example.android.sunshine.app.ACTION_DATA_UPDATED";

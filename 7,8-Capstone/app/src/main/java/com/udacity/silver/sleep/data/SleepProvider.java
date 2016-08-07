@@ -14,9 +14,6 @@ import com.udacity.silver.sleep.services.TrophyCaseUpdate;
 
 import timber.log.Timber;
 
-/**
- * Created by silver on 7/25/16.
- */
 
 public class SleepProvider extends ContentProvider {
 

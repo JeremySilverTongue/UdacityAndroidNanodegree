@@ -59,7 +59,7 @@ public final class SleepContract implements BaseColumns {
 
         values.put(COLUMN_DAY, Utilities.normalizedDay(wakeTime));
         values.put(COLUMN_SLEEP, sleepTime);
-        values.put(COLUMN_WAKE, sleepTime);
+        values.put(COLUMN_WAKE, wakeTime);
         values.put(COLUMN_DURATION, Utilities.sleepHours(sleepTime, wakeTime));
 
         context.getContentResolver().insert(SLEEP_URI, values);

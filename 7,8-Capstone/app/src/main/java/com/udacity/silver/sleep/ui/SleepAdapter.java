@@ -33,7 +33,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.SleepItemVie
     public SleepAdapter(Context context) {
         this.context = context;
         dateFormat = SimpleDateFormat.getDateInstance();
-        timeFormat = SimpleDateFormat.getTimeInstance();
+        timeFormat = new SimpleDateFormat("h:mm a", Locale.US);
     }
 
     public void setCursor(Cursor cursor) {
@@ -63,7 +63,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.SleepItemVie
         String date = dateFormat.format(new Date(rawDay));
         String sleep = timeFormat.format(new Date(rawSleep));
         String wake = timeFormat.format(new Date(rawWake));
-        String duration = String.format(Locale.getDefault(), "&0.1f", rawDuration);
+        String duration = String.format(Locale.getDefault(), "%01.1f", rawDuration);
 
 
         holder.date.setText(date);

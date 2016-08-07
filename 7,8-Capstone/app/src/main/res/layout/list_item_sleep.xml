@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <TextView
@@ -10,7 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="06-22-1990" />
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        tools:text="Jun 22, 1990" />
 
     <TextView
         android:id="@+id/sleep"

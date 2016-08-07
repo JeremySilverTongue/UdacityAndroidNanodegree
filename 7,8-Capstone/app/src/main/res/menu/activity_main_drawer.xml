@@ -4,15 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_sleep"
-            android:icon="@drawable/ic_menu_camera"
             android:title="@string/sleep_now" />
         <item
             android:id="@+id/nav_log"
-            android:icon="@drawable/ic_menu_gallery"
             android:title="@string/log" />
         <item
             android:id="@+id/nav_trophy"
-            android:icon="@drawable/ic_menu_manage"
             android:title="@string/trophy_case" />
     </group>
 

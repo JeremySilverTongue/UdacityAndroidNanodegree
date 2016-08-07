@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_trophy) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.content, new TrophyCaseFragment())
+                    .replace(R.id.content, new AchievementFragment())
                     .commit();
         }
 
@@ -93,4 +93,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
