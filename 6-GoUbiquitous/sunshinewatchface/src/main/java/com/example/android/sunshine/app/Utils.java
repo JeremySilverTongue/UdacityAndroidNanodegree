@@ -1,8 +1,5 @@
-package com.example.android.sunshine.wear;
+package com.example.android.sunshine.app;
 
-/**
- * Created by silver on 7/8/16.
- */
 
 public class Utils {
 
@@ -32,6 +29,6 @@ public class Utils {
         } else if (weatherId >= 802 && weatherId <= 804) {
             return R.drawable.ic_cloudy;
         }
-        return -1;
+        return R.drawable.ic_clear;
     }
 }

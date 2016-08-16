@@ -73,10 +73,6 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     public static final int LOCATION_STATUS_INVALID = 4;
     private static final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     private static final int WEATHER_NOTIFICATION_ID = 3004;
-
-    private GoogleApiClient mGoogleApiClient;
-
-
     private static final String[] NOTIFY_WEATHER_PROJECTION = new String[]{
             WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
             WeatherContract.WeatherEntry.COLUMN_MAX_TEMP,
@@ -88,16 +84,23 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
     private static final int INDEX_MAX_TEMP = 1;
     private static final int INDEX_MIN_TEMP = 2;
     private static final int INDEX_SHORT_DESC = 3;
+    private static final String WEATHER_KEY = "weather";
+    private static final String HIGH_KEY = "high";
+    private static final String LOW_KEY = "low";
     public final String TAG = SunshineSyncAdapter.class.getSimpleName();
+    private GoogleApiClient mGoogleApiClient;
 
     public SunshineSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
+
+        Log.d(TAG, "Sync adapter created");
 
         mGoogleApiClient = new GoogleApiClient.Builder(getContext())
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
                     @Override
                     public void onConnected(Bundle connectionHint) {
                         Log.d(TAG, "onConnected: " + connectionHint);
+                        notifyWear();
                         // Now you can use the Data Layer API
                     }
 
@@ -115,6 +118,8 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                 // Request access only to the Wearable API
                 .addApi(Wearable.API)
                 .build();
+
+        mGoogleApiClient.connect();
 
     }
 
@@ -482,7 +487,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                         new String[]{Long.toString(dayTime.setJulianDay(julianStartDay - 1))});
 
                 notifyWear();
-                updateWidgets();
+//                updateWidgets();
                 updateMuzei();
                 notifyWeather();
 
@@ -497,12 +502,9 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
         }
     }
 
-    private static final String WEATHER_KEY = "weather";
-    private static final String HIGH_KEY = "high";
-    private static final String LOW_KEY = "low";
-
-
     private void notifyWear() {
+
+        Log.d(TAG, "Notify wear called");
 
         String locationQuery = Utility.getPreferredLocation(getContext());
 
@@ -529,7 +531,7 @@ public class SunshineSyncAdapter extends AbstractThreadedSyncAdapter {
                     .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
                         @Override
                         public void onResult(DataApi.DataItemResult dataItemResult) {
-                            Log.d(TAG, "Sending image was successful: " + dataItemResult.getStatus()
+                            Log.d(TAG, "Sending weather was successful: " + dataItemResult.getStatus()
                                     .isSuccess());
                         }
                     });
