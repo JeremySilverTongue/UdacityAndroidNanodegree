@@ -31,14 +31,14 @@ public final class SleepPreferenceUtils {
         return sharedPreferences.contains(SLEEP_KEY);
     }
 
-    public static void cancelSleep(Context context) {
+    private static void cancelSleep(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(SLEEP_KEY);
         editor.apply();
     }
 
-    public static long getSleepTime(Context context) {
+    private static long getSleepTime(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getLong(SLEEP_KEY, 0);
 

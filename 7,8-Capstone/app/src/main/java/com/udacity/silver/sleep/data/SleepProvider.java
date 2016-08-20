@@ -18,13 +18,13 @@ import timber.log.Timber;
 public class SleepProvider extends ContentProvider {
 
 
-    static final int SLEEP = 100;
-    static final int SLEEP_FOR_DAY = 101;
+    private static final int SLEEP = 100;
+    private static final int SLEEP_FOR_DAY = 101;
 
-    static UriMatcher uriMatcher = buildUriMatcher();
+    private static final UriMatcher uriMatcher = buildUriMatcher();
     private SleepDbHelper dbHelper;
 
-    static UriMatcher buildUriMatcher() {
+    private static UriMatcher buildUriMatcher() {
         UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(SleepContract.AUTHORITY, SleepContract.PATH_SLEEP, SLEEP);
         matcher.addURI(SleepContract.AUTHORITY, SleepContract.PATH_SLEEP_FOR_DATE, SLEEP_FOR_DAY);

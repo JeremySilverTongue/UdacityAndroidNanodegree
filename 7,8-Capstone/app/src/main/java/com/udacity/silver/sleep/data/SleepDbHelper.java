@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class SleepDbHelper extends SQLiteOpenHelper {
+class SleepDbHelper extends SQLiteOpenHelper {
 
     private static final String NAME = "Sleep.db";
     private static final int VERSION = 1;

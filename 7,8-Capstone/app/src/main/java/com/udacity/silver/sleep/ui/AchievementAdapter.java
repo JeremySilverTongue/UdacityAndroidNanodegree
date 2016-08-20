@@ -23,11 +23,11 @@ import butterknife.ButterKnife;
 public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.AchievementViewHolder> {
 
 
-    private Context context;
+    private final Context context;
 
-    private List<String> keys;
-    private List<String> titles;
-    private List<String> descriptions;
+    private final List<String> keys;
+    private final List<String> titles;
+    private final List<String> descriptions;
 
     private Set<String> completeAchievements;
 

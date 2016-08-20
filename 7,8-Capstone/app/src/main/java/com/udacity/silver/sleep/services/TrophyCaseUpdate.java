@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class TrophyCaseUpdate extends IntentService {
 
-    public static final String SERVICE_NAME = "Trophy Case Update";
+    private static final String SERVICE_NAME = "Trophy Case Update";
 
     public TrophyCaseUpdate() {
         super(SERVICE_NAME);

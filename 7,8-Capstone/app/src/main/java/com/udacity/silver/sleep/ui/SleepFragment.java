@@ -28,21 +28,26 @@ import timber.log.Timber;
 
 public class SleepFragment extends Fragment {
 
-    public static final int NOTIFICAITON_ID = 1234;
+    private static final int NOTIFICAITON_ID = 1234;
 
     @BindView(R.id.sleep_button)
+    private
     Button sleepButton;
 
     @BindView(R.id.wake_up_button)
+    private
     Button wakeButton;
 
     @BindView(R.id.asleep_layout)
+    private
     View asleepLayout;
 
     @BindView(R.id.awake_layout)
+    private
     View awakeLayout;
 
     @BindView(R.id.ad_view)
+    private
     AdView adView;
 
     public SleepFragment() {
@@ -87,7 +92,7 @@ public class SleepFragment extends Fragment {
     }
 
 
-    public void createNotification(){
+    private void createNotification(){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext());
         builder.setContentTitle("You're sleeping!");
         builder.setSmallIcon(R.drawable.ic_stat_zzz);
@@ -103,7 +108,7 @@ public class SleepFragment extends Fragment {
         );
 
         builder.setContentIntent(pendingIntent);
-        builder.set
+//        builder.set
 
         NotificationManager manager =
                 (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);

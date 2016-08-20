@@ -25,10 +25,10 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.SleepItemVie
 
     private Cursor cursor;
 
-    private Context context;
+    private final Context context;
 
-    private DateFormat dateFormat;
-    private DateFormat timeFormat;
+    private final DateFormat dateFormat;
+    private final DateFormat timeFormat;
 
     public SleepAdapter(Context context) {
         this.context = context;

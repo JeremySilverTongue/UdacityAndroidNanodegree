@@ -13,7 +13,7 @@ public final class SleepContract implements BaseColumns {
 
     public static final String AUTHORITY = "com.udacity.silver.sleep";
 
-    public static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
+    private static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
 
     public static final String PATH_SLEEP = "sleep";
 

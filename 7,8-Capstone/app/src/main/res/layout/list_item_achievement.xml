@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:id="@+id/trophy"
-        android:src="@drawable/ic_trophy"/>
+        android:src="@drawable/ic_trophy"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="match_parent"

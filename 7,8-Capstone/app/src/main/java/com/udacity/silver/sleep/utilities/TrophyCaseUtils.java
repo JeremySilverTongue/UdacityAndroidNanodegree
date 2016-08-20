@@ -4,11 +4,8 @@ import android.content.Context;
 
 import com.udacity.silver.sleep.R;
 
-/**
- * Created by silver on 7/26/16.
- */
 
-public final class TrophyCaseUtils {
+final class TrophyCaseUtils {
 
 
     private TrophyCaseUtils() {

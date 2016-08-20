@@ -10,7 +10,6 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sleep_now">Sleep Now!</string>
     <string name="log">Log</string>
     <string name="trophy_case">Trophy Case</string>
@@ -27,6 +26,10 @@
     <string name="trophy_first_week_key" translatable="false">first_week</string>
     <string name="trophy_first_week_title">All Week</string>
     <string name="trophy_first_week_description">You tracked a whole week of sleep!</string>
+    <string name="go_to_sleep">Go to sleep</string>
+    <string name="you_re_asleep">You\'re asleep!</string>
+    <string name="developer_email">junkforjeremy@gmail.com</string>
+    <string name="wake_up">Wake up</string>
 
 
 </resources>

@@ -25,9 +25,10 @@ public class LogFragment extends Fragment implements LoaderManager.LoaderCallbac
     private static final int LOADER_ID = 0;
 
     @BindView(R.id.log_recycler_view)
+    private
     RecyclerView recyclerView;
 
-    SleepAdapter adapter;
+    private SleepAdapter adapter;
 
     public LogFragment() {
     }

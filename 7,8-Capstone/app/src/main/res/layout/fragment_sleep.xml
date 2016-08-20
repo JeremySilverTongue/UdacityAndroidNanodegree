@@ -27,7 +27,7 @@
                 android:id="@+id/sleep_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Go to sleep" />
+                android:text="@string/go_to_sleep" />
         </LinearLayout>
 
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="You're asleep!"
+                android:text="@string/you_re_asleep"
 
                 />
 
@@ -50,7 +50,7 @@
                 android:id="@+id/wake_up_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wake up" />
+                android:text="@string/wake_up" />
 
 
         </LinearLayout>
