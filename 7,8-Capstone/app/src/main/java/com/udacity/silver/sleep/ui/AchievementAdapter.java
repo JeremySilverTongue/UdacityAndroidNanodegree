@@ -1,6 +1,7 @@
 package com.udacity.silver.sleep.ui;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,6 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 
 
 public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.AchievementViewHolder> {
@@ -52,16 +52,15 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
     @Override
     public void onBindViewHolder(AchievementViewHolder holder, int position) {
 
-//        if (completeAchievements.contains(keys.get(position) )){
-//            holder.trophy.setImageTintMode(null);
-//        } else {
-//            holder.trophy.setImageTintMode(PorterDuff.Mode.DARKEN);
-//        }
+        if (completeAchievements.contains(keys.get(position))) {
+            holder.trophy.setImageTintMode(null);
+        } else {
+            holder.trophy.setImageTintMode(PorterDuff.Mode.DARKEN);
+        }
 
 
         holder.title.setText(titles.get(position));
         holder.description.setText(descriptions.get(position));
-
 
 
     }

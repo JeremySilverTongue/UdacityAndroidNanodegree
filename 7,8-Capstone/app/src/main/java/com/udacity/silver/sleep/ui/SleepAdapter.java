@@ -23,12 +23,10 @@ import butterknife.ButterKnife;
 public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.SleepItemViewHolder> {
 
 
-    private Cursor cursor;
-
     private final Context context;
-
     private final DateFormat dateFormat;
     private final DateFormat timeFormat;
+    private Cursor cursor;
 
     public SleepAdapter(Context context) {
         this.context = context;
@@ -97,7 +95,7 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.SleepItemVie
         TextView duration;
 
 
-        public SleepItemViewHolder(View itemView) {
+        SleepItemViewHolder(View itemView) {
 
             super(itemView);
 

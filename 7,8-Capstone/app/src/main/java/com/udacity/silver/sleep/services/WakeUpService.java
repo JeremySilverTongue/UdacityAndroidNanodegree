@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 
 import com.udacity.silver.sleep.data.SleepPreferenceUtils;
+import com.udacity.silver.sleep.utilities.Utilities;
 
 
 public class WakeUpService extends IntentService {
@@ -17,6 +18,9 @@ public class WakeUpService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+
+        Utilities.cancelNotification(this);
+
         SleepPreferenceUtils.wakeUp(this);
     }
 }

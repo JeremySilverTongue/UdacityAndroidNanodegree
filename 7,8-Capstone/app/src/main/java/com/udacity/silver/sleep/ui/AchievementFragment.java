@@ -21,7 +21,6 @@ public class AchievementFragment extends Fragment {
 
 
     @BindView(R.id.recycler_view)
-    private
     RecyclerView recyclerView;
 
     public AchievementFragment() {

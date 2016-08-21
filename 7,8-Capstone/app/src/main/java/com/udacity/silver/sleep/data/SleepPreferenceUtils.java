@@ -1,8 +1,12 @@
 package com.udacity.silver.sleep.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.udacity.silver.sleep.services.TrophyCaseUpdate;
+import com.udacity.silver.sleep.utilities.Utilities;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -12,14 +16,15 @@ import java.util.Set;
 public final class SleepPreferenceUtils {
 
 
-    private final static String SLEEP_KEY = "sleep";
-    private final static String ACHIEVEMENT_KEY = "cheevos";
+    public final static String SLEEP_KEY = "sleep";
+    public final static String ACHIEVEMENT_KEY = "cheevos";
 
 
     private SleepPreferenceUtils() {
     }
 
     public static void goToSleep(Context context) {
+        Utilities.createNotification(context);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putLong(SLEEP_KEY, Calendar.getInstance().getTimeInMillis());
@@ -32,6 +37,7 @@ public final class SleepPreferenceUtils {
     }
 
     private static void cancelSleep(Context context) {
+        Utilities.cancelNotification(context);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(SLEEP_KEY);
@@ -51,9 +57,8 @@ public final class SleepPreferenceUtils {
         if (sleepTime != 0) {
             long wakeTime = Calendar.getInstance().getTimeInMillis();
             SleepContract.addNight(context, sleepTime, wakeTime);
+            context.startService(new Intent(context, TrophyCaseUpdate.class));
         }
-
-
     }
 
     public static Set<String> getAchievements(Context context) {

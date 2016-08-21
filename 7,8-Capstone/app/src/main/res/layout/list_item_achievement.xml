@@ -1,37 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="4dp"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="4dp">
 
     <ImageView
+        android:id="@+id/trophy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:id="@+id/trophy"
         android:src="@drawable/ic_trophy"
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:text="First Night"
-        />
+        tools:text="First Night" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:layout_height="wrap_content"
         android:id="@+id/description"
-        tools:text="Logged your first night"
-        />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        tools:text="Logged your first night" />
 
 
 </LinearLayout>
