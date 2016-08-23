@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import com.udacity.silver.sleep.services.TrophyCaseUpdate;
 import com.udacity.silver.sleep.utilities.Utilities;
+import com.udacity.silver.sleep.widget.SleepWidgetProvider;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -24,11 +25,13 @@ public final class SleepPreferenceUtils {
     }
 
     public static void goToSleep(Context context) {
-        Utilities.createNotification(context);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putLong(SLEEP_KEY, Calendar.getInstance().getTimeInMillis());
         editor.apply();
+        Utilities.createNotification(context);
+        SleepWidgetProvider.updateWidgets(context);
+
     }
 
     public static boolean isAsleep(Context context) {
@@ -37,11 +40,13 @@ public final class SleepPreferenceUtils {
     }
 
     private static void cancelSleep(Context context) {
-        Utilities.cancelNotification(context);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(SLEEP_KEY);
         editor.apply();
+        Utilities.cancelNotification(context);
+        SleepWidgetProvider.updateWidgets(context);
+
     }
 
     private static long getSleepTime(Context context) {

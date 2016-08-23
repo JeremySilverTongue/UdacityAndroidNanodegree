@@ -1,7 +1,6 @@
 package com.udacity.silver.sleep.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 
 public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.AchievementViewHolder> {
@@ -39,6 +39,7 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
         descriptions = Arrays.asList(context.getResources().getStringArray(R.array.trophy_case_descriptions));
 
         completeAchievements = SleepPreferenceUtils.getAchievements(context);
+        Timber.d("Complete cheevos: %s", completeAchievements);
 
     }
 
@@ -53,9 +54,9 @@ public class AchievementAdapter extends RecyclerView.Adapter<AchievementAdapter.
     public void onBindViewHolder(AchievementViewHolder holder, int position) {
 
         if (completeAchievements.contains(keys.get(position))) {
-            holder.trophy.setImageTintMode(null);
+            holder.trophy.setVisibility(View.VISIBLE);
         } else {
-            holder.trophy.setImageTintMode(PorterDuff.Mode.DARKEN);
+            holder.trophy.setVisibility(View.INVISIBLE);
         }
 
 

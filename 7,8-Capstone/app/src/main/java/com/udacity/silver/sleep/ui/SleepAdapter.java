@@ -58,10 +58,10 @@ public class SleepAdapter extends RecyclerView.Adapter<SleepAdapter.SleepItemVie
         long rawWake = cursor.getLong(SleepContract.POSITION_WAKE);
         double rawDuration = cursor.getDouble(SleepContract.POSITION_DURATION);
 
-        String date = dateFormat.format(new Date(rawDay));
+        String date = dateFormat.format(new Date(rawWake));
         String sleep = timeFormat.format(new Date(rawSleep));
         String wake = timeFormat.format(new Date(rawWake));
-        String duration = String.format(Locale.getDefault(), "%01.1f", rawDuration);
+        String duration = String.format(Locale.getDefault(), "%01.1f hours", rawDuration);
 
 
         holder.date.setText(date);

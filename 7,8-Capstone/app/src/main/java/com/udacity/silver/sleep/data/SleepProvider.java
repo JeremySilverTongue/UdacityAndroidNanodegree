@@ -45,6 +45,7 @@ public class SleepProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case SLEEP:
+                Timber.d("Sort order: %s", sortOrder);
                 returnCursor = db.query(
                         SleepContract.TABLE_NAME,
                         projection,
@@ -109,9 +110,6 @@ public class SleepProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown URI:" + uri);
         }
 
-//        if (db.isOpen()) {
-//            db.close();
-//        }
 
         Intent updateAchievementsIntent = new Intent(getContext(), TrophyCaseUpdate.class);
 

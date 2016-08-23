@@ -14,9 +14,6 @@ import com.udacity.silver.sleep.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AchievementFragment extends Fragment {
 
 

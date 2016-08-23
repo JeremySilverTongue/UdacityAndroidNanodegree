@@ -11,9 +11,10 @@
         android:id="@+id/trophy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/trophy"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_trophy"
-        tools:ignore="ContentDescription" />
+        android:src="@drawable/ic_trophy" />
 
     <TextView
         android:id="@+id/title"

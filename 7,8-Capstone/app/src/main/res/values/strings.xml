@@ -26,11 +26,20 @@
     <string name="trophy_first_week_key" translatable="false">first_week</string>
     <string name="trophy_first_week_title">All Week</string>
     <string name="trophy_first_week_description">You tracked a whole week of sleep!</string>
+
+
     <string name="go_to_sleep">Go to sleep</string>
     <string name="you_re_asleep">You\'re asleep!</string>
     <string name="developer_email">junkforjeremy@gmail.com</string>
     <string name="wake_up">Wake up</string>
     <string name="ad_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="widget_title">42Winks</string>
+    <string name="last_night">Last Night:</string>
+
+    <string name="duration">%s hours</string>
+
+    <string name="times">%1$s\u2014%2$s</string>
+    <string name="trophy">Trophy!</string>
 
 
 </resources>

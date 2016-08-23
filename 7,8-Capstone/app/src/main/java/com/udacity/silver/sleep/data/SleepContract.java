@@ -58,7 +58,11 @@ public final class SleepContract implements BaseColumns {
     }
 
     public static Cursor getAllNights(Context context) {
-        return context.getContentResolver().query(SLEEP_URI, COLUMNS, null, null, COLUMN_DAY);
+        return context.getContentResolver().query(SLEEP_URI, COLUMNS, null, null, COLUMN_DAY + " DESC");
+    }
+
+    public static Cursor getMostRecentNight(Context context) {
+        return context.getContentResolver().query(SLEEP_URI, COLUMNS, null, null, COLUMN_DAY + " DESC LIMIT 1");
     }
 
 }

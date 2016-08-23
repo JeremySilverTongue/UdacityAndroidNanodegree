@@ -11,8 +11,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textAlignment="viewStart"
         android:textAppearance="?android:attr/textAppearanceListItem"
         tools:text="Jun 22, 1990" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="8.5" />
 
     <TextView
         android:id="@+id/sleep"
@@ -27,12 +34,6 @@
         android:layout_height="wrap_content"
         android:padding="4dp"
         tools:text="6:30am" />
-
-    <TextView
-        android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="8.5" />
 
 
 </LinearLayout>

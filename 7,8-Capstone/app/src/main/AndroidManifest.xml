@@ -35,6 +35,21 @@
         <service
             android:name=".services.WakeUpService"
             android:exported="false" />
+
+        <receiver
+            android:name=".widget.SleepWidgetProvider"
+            android:label="@string/widget_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.udacity.silver.stockhawk.ACTION_DATA_UPDATED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+
     </application>
 
 </manifest>

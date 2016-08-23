@@ -29,19 +29,15 @@ public class SleepFragment extends Fragment implements SharedPreferences.OnShare
     Button sleepButton;
 
     @BindView(R.id.wake_up_button)
-
     Button wakeButton;
 
     @BindView(R.id.asleep_layout)
-
     View asleepLayout;
 
     @BindView(R.id.awake_layout)
-
     View awakeLayout;
 
     @BindView(R.id.ad_view)
-
     AdView adView;
 
     public SleepFragment() {

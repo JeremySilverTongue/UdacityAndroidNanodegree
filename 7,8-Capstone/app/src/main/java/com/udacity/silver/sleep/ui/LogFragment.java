@@ -18,7 +18,6 @@ import com.udacity.silver.sleep.data.SleepContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class LogFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -50,19 +49,16 @@ public class LogFragment extends Fragment implements LoaderManager.LoaderCallbac
 
         getLoaderManager().restartLoader(LOADER_ID, null, this);
 
-        Timber.d("Fragment created");
         return root;
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Timber.d("Loader created");
-        return new CursorLoader(getContext(), SleepContract.SLEEP_URI, SleepContract.COLUMNS, null, null, SleepContract.COLUMN_DAY);
+        return new CursorLoader(getContext(), SleepContract.SLEEP_URI, SleepContract.COLUMNS, null, null, SleepContract.COLUMN_DAY + " DESC");
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Timber.d("Cursor set: %d", data.getCount());
         adapter.setCursor(data);
     }
 
